@@ -31,7 +31,7 @@ POST localhost/user/login
 <!-- template end -->
 
 ### CreateUser　API
-Success message is returned when user creation is successful, and failure message is returned when failure
+CreateUser API returns the success or error message in json format
 #### EndPoint
 ```
 POST localhost/users/
