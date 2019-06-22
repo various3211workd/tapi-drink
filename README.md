@@ -9,4 +9,4 @@ tapi-drink create on rails api server and vue front.
 * [Tapi-Drink-API](tapi-api/README.md)
 
 #### Tapi-Drink-Front
-* [Tapi-Drink-Front](vue-js/README.md)
+* [Tapi-Drink-Front](tapi-front/README.md)
