@@ -65,12 +65,12 @@
 
 <script>
 import MyFooter from '~/components/Footer.vue'
-//import feature from '~/pages/feature.vue'
+import CreateUser from '~/pages/create_user.vue'
 
 export default {
   components: {
     MyFooter,
-    //feature,
+    CreateUser
   },
   data: () => ({
     drawer: null,
@@ -79,7 +79,7 @@ export default {
     */
     items: [
       { title: 'Home', icon: 'home', url: '/' },
-      //{ title: 'Feature', icon: 'code', url: '/feature' },
+      { title: 'CreateUser', icon: 'code', url: '/CreateUser' },
     ],
     drawer: false,
     drawerRight: true,
