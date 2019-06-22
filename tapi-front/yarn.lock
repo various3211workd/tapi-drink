@@ -930,6 +930,20 @@
     webpack-node-externals "^1.7.2"
     webpackbar "^3.2.0"
 
+"@nuxtjs/font-awesome@^1.0.4":
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/@nuxtjs/font-awesome/-/font-awesome-1.0.4.tgz#ffd543970fbedb41859129b52050020c676bb7b4"
+  integrity sha512-1Y+gISu8VCoK4VQnmmNZIzOHvkpkWm5Jvwa84rIOba0B7pkPHh4jdpS9BII5YvQfxXFtXRoM9UHu8oq/4IteCw==
+  dependencies:
+    font-awesome "^4.7.0"
+
+"@nuxtjs/vuetify@^0.5.6":
+  version "0.5.6"
+  resolved "https://registry.yarnpkg.com/@nuxtjs/vuetify/-/vuetify-0.5.6.tgz#b070ebb338439aabb130b486db622b74b8c01e92"
+  integrity sha512-AZrYApYcrz8WmZWI0UKKBi7XT+Qzwl1lgHcIBJT2+PU9F5k/E+WaaUId7XAaBRGG6gH+nXZPqxn/hm3NXvKFgg==
+  dependencies:
+    vuetify "^1.5.14"
+
 "@nuxtjs/youch@^4.2.3":
   version "4.2.3"
   resolved "https://registry.yarnpkg.com/@nuxtjs/youch/-/youch-4.2.3.tgz#36f8b22df5a0efaa81373109851e1d857aca6bed"
@@ -3246,6 +3260,11 @@ flush-write-stream@^1.0.0:
   dependencies:
     inherits "^2.0.3"
     readable-stream "^2.3.6"
+
+font-awesome@^4.7.0:
+  version "4.7.0"
+  resolved "https://registry.yarnpkg.com/font-awesome/-/font-awesome-4.7.0.tgz#8fa8cf0411a1a31afd07b06d2902bb9fc815a133"
+  integrity sha1-j6jPBBGhoxr9B7BtKQK7n8gVoTM=
 
 for-in@^1.0.2:
   version "1.0.2"
@@ -7147,6 +7166,11 @@ vue@^2.6.10:
   version "2.6.10"
   resolved "https://registry.yarnpkg.com/vue/-/vue-2.6.10.tgz#a72b1a42a4d82a721ea438d1b6bf55e66195c637"
   integrity sha512-ImThpeNU9HbdZL3utgMCq0oiMzAkt1mcgy3/E6zWC/G6AaQoeuFdsl9nDhTDU3X1R6FK7nsIUuRACVcjI+A2GQ==
+
+vuetify@^1.5.14:
+  version "1.5.16"
+  resolved "https://registry.yarnpkg.com/vuetify/-/vuetify-1.5.16.tgz#cc9d0199c389d64d15787ddc85ca47a28225eeee"
+  integrity sha512-yBgOsfurKQkeS+l+rrTQZ2bFk0D9ezjHhkuVM5A/yVzcg62sY2nfYaq/H++uezBWC9WYFrp/5OmSocJQcWn9Qw==
 
 vuex@^3.1.1:
   version "3.1.1"
