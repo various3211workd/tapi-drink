@@ -1,3 +1,6 @@
+require('dotenv').config()
+const { TAPI_API_KEY } = process.env;
+
 module.exports = {
   /**
    * modules
@@ -53,6 +56,9 @@ module.exports = {
       accent: '#8c9eff',
       error: '#b71c1c'
     }
+  },
+  env: {
+    TAPI_API_KEY
   }
 }
 
