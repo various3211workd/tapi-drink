@@ -7,7 +7,8 @@ module.exports = {
    */
   modules: [
     '@nuxtjs/vuetify',
-    '@nuxtjs/font-awesome'
+    '@nuxtjs/font-awesome',
+    '@nuxtjs/axios',
   ],
   /*
   ** Headers of the page

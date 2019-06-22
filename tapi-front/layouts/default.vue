@@ -64,13 +64,15 @@
 </template>
 
 <script>
-import MyFooter from '~/components/Footer.vue'
-//import feature from '~/pages/feature.vue'
+import MyFooter from '~/components/Footer';
+import CreateUser from '~/pages/create_user';
+import LoginUser from '~/pages/login_user';
 
 export default {
   components: {
     MyFooter,
-    //feature,
+    CreateUser,
+    LoginUser
   },
   data: () => ({
     drawer: null,
@@ -79,7 +81,8 @@ export default {
     */
     items: [
       { title: 'Home', icon: 'home', url: '/' },
-      //{ title: 'Feature', icon: 'code', url: '/feature' },
+      { title: 'CreateUser', icon: 'fa fa-user-plus', url: '/create_user' },
+      { title: 'LoginUser', icon: 'fa fa-user', url: '/login_user' },
     ],
     drawer: false,
     drawerRight: true,
