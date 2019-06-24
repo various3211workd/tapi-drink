@@ -34,7 +34,7 @@ POST localhost/user/login
 CreateUser API returns the success or error message in json format
 #### EndPoint
 ```
-POST localhost/user/new
+POST localhost/api/user/new
 ```
 #### Params
 |Specified  |Param  |Type  |Description  |
@@ -47,7 +47,7 @@ POST localhost/user/new
 Please use the curl command to check the operation
 
 ```
-$ curl -X POST http://localhost:3000/user/new -d 'user[email]={user_email}&user[name]={user_name}&user[password]={user_password}'
+$ curl -X POST http://localhost:3000/api/user/new -d 'user[email]={user_email}&user[name]={user_name}&user[password]={user_password}'
 ```
 
 Please replace the {user_email} and {user_name} and {user_password} part with a concrete value  
@@ -61,15 +61,15 @@ ex)
 〇Success pattern
 
 ```
-$ curl -X POST http://localhost:3000/user/new -d 'user[email]=test@example.com&user[name]=user&user[password]=password'
+$ curl -X POST http://localhost:3000/api/user/new -d 'user[email]=test@example.com&user[name]=user&user[password]=password'
 ```
 
 ✖Failure pattern
 
 ```
-$ curl -X POST http://localhost:3000/user/new -d 'user[name]=&user[password]=password'
+$ curl -X POST http://localhost:3000/api/user/new -d 'user[name]=&user[password]=password'
                     or
-$ curl -X POST http://localhost:3000/user/new -d ''
+$ curl -X POST http://localhost:3000/api/user/new -d ''
 ```
 
 Successful message
@@ -84,7 +84,7 @@ Failure message
   
 ```
 {
-  "error":"failed save"
+  "message":"failed save"
 }
 ```
 </div></details>
@@ -93,7 +93,7 @@ Failure message
 UserLogin API  returns a success_message and user_token when login is successful and an error message when failure
 #### EndPoint
 ```
-POST localhost/auth/login
+POST localhost/api/auth/login
 ```
 #### Params
 |Specified  |Param  |Type  |Description  |
@@ -105,7 +105,7 @@ POST localhost/auth/login
 Please use the curl command to check the operation
 
 ```
-$ curl -X POST http://localhost:3000/auth/login -d 'login[email]={login_email}&login[password]={login_password}'
+$ curl -X POST http://localhost:3000/api/auth/login -d 'login[email]={login_email}&login[password]={login_password}'
 ```
 
 Please replace the {login_email} and {login_password} part with a concrete value  
@@ -116,7 +116,7 @@ ex)
 ```
 
 ```
-$ curl -X POST http://localhost:3000/auth/login -d 'login[email]=test@example.com&login[password]=password'
+$ curl -X POST http://localhost:3000/api/auth/login -d 'login[email]=test@example.com&login[password]=password'
 ```
 
 Validation error is returned if you do not enter both email and password
@@ -135,7 +135,7 @@ Successful login message
   
 ```
 {
-  "success_message":"succesful login",
+  "message":"succesful login",
   "user_token":{random_string}
 }
 ```
@@ -144,7 +144,8 @@ Failure login message
   
 ```
 {
-  "failure_message":"failed login"
+  "message":"failed login",
+  "user_token":''
 }
 ```
 </div></details>
