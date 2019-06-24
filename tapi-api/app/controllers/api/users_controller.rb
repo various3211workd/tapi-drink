@@ -7,7 +7,7 @@ module Api
       @user.save!
       render json:{message:'success!!'}
     rescue => e
-      render json:{error:"failed save"}
+      render json:{message:"failed save"}
     end
 
     def login
@@ -18,9 +18,9 @@ module Api
 
       user = User.find_by(email: input_user_login_data[:email])
       if user && user.authenticate(input_user_login_data[:password])
-        render json:{success_message:'succesful login',user_token:user.user_token} and return
+        render json:{message:'succesful login',user_token:user.user_token} and return
       else
-        render json:{failure_message:'failed login'} and return
+        render json:{message:'failed login',user_token:''} and return
       end
 
     end
@@ -35,5 +35,5 @@ module Api
       params.fetch(:login, {}).permit(:email, :password)
     end
 
-    end
+  end
 end
