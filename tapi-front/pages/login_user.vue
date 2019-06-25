@@ -25,13 +25,14 @@ export default {
   },
   methods: {
     async userLogin() {
-      this.message = await this.$axios.$POST(
-        LOGIN_URL,
-        {
-          'login[email]': this.user_email,
-          'login[password]': this.user_pass,
-        });
-    },
+      const params = new URLSearchParams();
+      params.append('login[email]', this.user_email);
+      params.append('login[password]', this.user_pass);
+
+      await axios.post(LOGIN_URL, params)
+        .then(response => console.log(response.data))
+        .catch(err => console.log(err));
+    }
   }
 }
 
