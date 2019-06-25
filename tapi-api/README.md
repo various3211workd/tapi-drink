@@ -3,6 +3,24 @@
 * [Tapi-Drink-Document](../README.md)
 * [Tapi-Drink-Front](../vue-js/README.md)
 
+## 🔧 Build Setup
+
+If you do not have ruby ​​installed, please install ruby
+
+``` bash
+# Please install if rails are not installed
+$ gem install rails
+
+# Install the package used by Tapi-drink
+$ bundle install
+
+# start server
+$ rails s
+
+```
+
+You should be able to access http://localhost:3000/ if the server is up
+
 ## 📝 API document
 
 <!-- this is a template. -->
