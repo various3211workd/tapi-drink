@@ -11,7 +11,7 @@
 <script>
 import axios from 'axios'
 
-const LOGIN_URL = 'http://localhost:3000/auth/login';
+const LOGIN_URL = 'http://localhost:30000/api/auth/login';
 
 export default {
   components: {

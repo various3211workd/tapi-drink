@@ -1,5 +1,6 @@
 require('dotenv').config()
 const { TAPI_API_KEY } = process.env;
+const { API_URL } = process.env;
 
 module.exports = {
   /**
@@ -58,7 +59,8 @@ module.exports = {
     }
   },
   env: {
-    TAPI_API_KEY
+    TAPI_API_KEY,
+    API_URL
   }
 }
 
