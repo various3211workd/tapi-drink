@@ -1,5 +1,6 @@
 module Api
   class UsersController < ApplicationController
+    skip_before_action :user_authenticate , only: [:create, :login]
 
     def create
       @user = User.new(user_params)
