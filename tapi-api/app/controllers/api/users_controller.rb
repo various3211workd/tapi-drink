@@ -1,26 +1,27 @@
 module Api
   class UsersController < ApplicationController
+    skip_before_action :user_authenticate , only: [:create, :login]
 
     def create
       @user = User.new(user_params)
       p user_params
       @user.save!
-      render json:{message:'success!!'}
+      render json:{ message: "success!!" }
     rescue => e
-      render json:{message:"failed save"}
+      render json:{ message: "failed save" }
     end
 
     def login
       input_user_login_data = login_params
       if !input_user_login_data[:email] || !input_user_login_data[:password]
-        render json:{params_error:"the email or password is incorrect"} and return
+        render json:{ params_error: "the email or password is incorrect" } and return
       end
 
       user = User.find_by(email: input_user_login_data[:email])
       if user && user.authenticate(input_user_login_data[:password])
-        render json:{message:'succesful login',user_token:user.user_token} and return
+        render json:{ message: "succesful login",user_token: user.user_token } and return
       else
-        render json:{message:'failed login',user_token:''} and return
+        render json:{ message: "failed login",user_token: ""} and return
       end
 
     end
