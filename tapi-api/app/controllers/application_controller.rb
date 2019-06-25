@@ -25,7 +25,7 @@ class ApplicationController < ActionController::API
   end
 
   def render_unauthorized
-    render json:{ message:'failed authenticate' }
+    render json:{ message: "failed authenticate" }
   end
 
 end
