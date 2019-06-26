@@ -19,8 +19,10 @@
 <script>
 import axios from 'axios'
 
-const USER_CREATE_URL = 'http://localhost:30000/api/user/new';
-
+const USER_CREATE_URL = process.env.API_URL + 'api/user/new';
+const config = {headers: {
+  'API_KEY': process.env.TAPI_API_KEY
+}}
 export default {
   components: {
   },
@@ -40,7 +42,7 @@ export default {
       params.append('user[name]', this.user_name);
       params.append('user[password]', this.user_pass);
 
-      await axios.post(USER_CREATE_URL, params)
+      await axios.post(USER_CREATE_URL, params, config)
         .then(response => {
           this.response = response.data;
           console.log(response.data);
