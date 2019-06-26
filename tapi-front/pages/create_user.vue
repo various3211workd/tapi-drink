@@ -12,7 +12,6 @@
       
       <button @click="userCreate">アカウント作成</button>
       <br>
-      {{ message }}
     </div>
   </section>
 </template>
@@ -27,11 +26,11 @@ export default {
   },
   data() {
     return {
-      message: '',
+      response: '',
       user_name: '',
       user_email: '',
       user_pass: '',
-      //user_repass: '',
+      user_repass: '',
     };
   },
   methods: {
@@ -42,7 +41,10 @@ export default {
       params.append('user[password]', this.user_pass);
 
       await axios.post(USER_CREATE_URL, params)
-        .then(response => console.log(response.data))
+        .then(response => {
+          this.response = response.data;
+          console.log(response.data);
+        })
         .catch(err => console.log(err));
     }
   }
