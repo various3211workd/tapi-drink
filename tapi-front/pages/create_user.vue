@@ -6,7 +6,7 @@
         <h1>アカウントを作成しました!!</h1>
       </div>
       <!-- can't login... -->
-      <div v-else>
+      <div v-else-if="this.response.message === 'failed save'">
         <h1>アカウントの作成に失敗しました...</h1>
       </div>
 
