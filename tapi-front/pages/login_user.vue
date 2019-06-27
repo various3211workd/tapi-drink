@@ -12,10 +12,7 @@
 import axios from 'axios'
 
 const LOGIN_URL = process.env.API_URL + 'api/auth/login';
-const config = {headers: {
-  'Content-Type': 'application/json',
-  'API_KEY': process.env.TAPI_API_KEY
-}}
+const TAPI_API_KEY = process.env.TAPI_API_KEY;
 
 export default {
   components: {
@@ -29,22 +26,20 @@ export default {
   },
   methods: {
     async userLogin() {
-      /*
-      const params = new URLSearchParams();
-      params.append('login[email]', this.user_email);
-      params.append('login[password]', this.user_pass);
-
-      await axios.post(LOGIN_URL, params, config)
-        .then(response => console.log(response.data))
-        .catch(err => console.log(err));
-      */
       await axios.post(
         LOGIN_URL,
         {
-          'login[email]': this.user_email,
-          'login[password]': this.user_pass
+          'login': {
+            'email': this.user_email,
+            'password': this.user_pass
+          }
         },
-        config)
+        {
+          headers: { 
+            'Content-Type': 'application/json',
+            'API_KEY': TAPI_API_KEY
+          }
+        })
           .then(response => console.log(response.data))
           .catch(err => console.log(err));
     }

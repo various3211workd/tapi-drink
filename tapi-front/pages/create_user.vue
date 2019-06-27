@@ -20,9 +20,7 @@
 import axios from 'axios'
 
 const USER_CREATE_URL = process.env.API_URL + 'api/user/new';
-const config = {headers: {
-  'API_KEY': process.env.TAPI_API_KEY
-}}
+
 export default {
   components: {
   },
@@ -37,17 +35,21 @@ export default {
   },
   methods: {
     async userCreate() {
-      const params = new URLSearchParams();
-      params.append('user[email]', this.user_email);
-      params.append('user[name]', this.user_name);
-      params.append('user[password]', this.user_pass);
-
-      await axios.post(USER_CREATE_URL, params, config)
-        .then(response => {
-          this.response = response.data;
-          console.log(response.data);
+      axios.defaults.headers.common = {
+        'X-Requested-With': 'XMLHttpRequest',
+        'API_KEY': process.env.TAPI_API_KEY
+      };
+      await axios.post(
+        USER_CREATE_URL,
+        {
+          'user': {
+            'email': this.user_email,
+            'name': this.user_name,
+            'password': this.user_pass
+          },
         })
-        .catch(err => console.log(err));
+          .then(response => console.log(response.data))
+          .catch(err => console.log(err));
     }
   }
 }
