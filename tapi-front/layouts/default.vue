@@ -18,16 +18,19 @@
         <v-toolbar flat>
           <v-list>
             <v-list-tile>
-              <v-list-tile avatar>
-                <v-list-tile-avatar>
-                  <v-icon medium>account_circle</v-icon>
-                </v-list-tile-avatar>
-                <v-list-tile-content>
-                  <v-list-tile-title class="title">
-                    UserName
-                  </v-list-tile-title>
-                </v-list-tile-content>
-              </v-list-tile>
+              <!-- watch loggin state -->
+              <div v-if="$store.getters.isSignedIn">
+                <v-list-tile avatar>
+                  <v-list-tile-avatar>
+                    <v-icon medium>account_circle</v-icon>
+                  </v-list-tile-avatar>
+                  <v-list-tile-content>
+                    <v-list-tile-title class="title">
+                      {{ $store.state.user }}
+                    </v-list-tile-title>
+                  </v-list-tile-content>
+                </v-list-tile>
+              </div>
             </v-list-tile>
           </v-list>
         </v-toolbar>

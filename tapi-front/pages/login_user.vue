@@ -52,8 +52,7 @@ export default {
         })
         .then(res => {
           this.response = res.data;
-          // need token save...
-          this.$store.commit('login', res.data.username);
+          this.$store.commit('login', res.data.user_name);
         })
         .catch(err => console.log(err));
     }
