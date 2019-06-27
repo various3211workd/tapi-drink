@@ -1,6 +1,16 @@
 <template>
   <section class="container">
     <div>
+      <!-- success login -->
+      <div v-if="this.response.message === 'success!!'">
+        <h1>アカウントを作成しました!!</h1>
+      </div>
+      <!-- can't login... -->
+      <div v-else>
+        <h1>アカウントの作成に失敗しました...</h1>
+      </div>
+
+      <br>
       ユーザ名: <input v-model="user_name" placeholder="edit me">
       <br>
       メールアドレス:　<input v-model="user_email" placeholder="edit me">
@@ -51,8 +61,10 @@ export default {
             'API_KEY': TAPI_API_KEY
           }
         })
-          .then(response => console.log(response.data))
-          .catch(err => console.log(err));
+        .then(res => {
+          this.response = res.data;
+        })
+        .catch(err => console.log(err));
     }
   }
 }
