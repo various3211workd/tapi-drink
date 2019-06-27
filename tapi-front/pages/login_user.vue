@@ -6,7 +6,7 @@
         <h1>ログインに成功しました!!</h1>
       </div>
       <!-- can't login... -->
-      <div v-else>
+      <div v-else-if="this.response.message === 'failed login'">
         <h1>ログインに失敗しました...</h1>
       </div>
 
@@ -52,7 +52,7 @@ export default {
         })
         .then(res => {
           this.response = res.data;
-          // need token save...
+          this.$store.commit('login', res.data.user_name);
         })
         .catch(err => console.log(err));
     }
