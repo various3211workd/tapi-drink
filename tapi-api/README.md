@@ -46,6 +46,9 @@ POST localhost/user/login
 ```
 
 </div></details>
+
+***
+
 <!-- template end -->
 
 ### [POST] CreateUser
@@ -107,6 +110,8 @@ Failure message
 ```
 </div></details>
 
+***
+
 ### [POST] UserLogin
 UserLogin API  returns a success_message and user_token when login is successful and an error message when failure
 #### EndPoint
@@ -167,3 +172,6 @@ Failure login message
 }
 ```
 </div></details>
+
+***
+
