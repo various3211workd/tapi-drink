@@ -19,9 +19,17 @@ module Api
 
       user = User.find_by(email: input_user_login_data[:email])
       if user && user.authenticate(input_user_login_data[:password])
-        render json:{ message: "succesful login",user_token: user.user_token } and return
+        render json:{ 
+                      message: "succesful login",
+                      user_token: user.user_token ,
+                      user_name: user.name 
+                    } and return
       else
-        render json:{ message: "failed login",user_token: ""} and return
+        render json:{ 
+                      message: "failed login",
+                      user_token: "",
+                      user_name: ""
+                    } and return
       end
 
     end
