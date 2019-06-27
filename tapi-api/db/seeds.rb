@@ -46,3 +46,18 @@
   rescue => e
     p "failed create { name: #{name}, address: #{address}, details: #{details}, user_id: #{user_id} }"
 end
+
+[
+  ["test@example.com"  ,"test"  ,"password"],
+  ["sample@example.com","sample","password"],
+  ["admin@example.com" ,"admin" ,"password"]
+].each do |email, name, password|
+  User.create(
+      { 
+        email:    email,
+        name:     name,
+        password: password
+      }
+  )
+  p "create user { email: #{email}, name: #{name}, password: #{password} }"
+end
