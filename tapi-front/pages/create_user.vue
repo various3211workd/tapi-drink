@@ -20,6 +20,7 @@
 import axios from 'axios'
 
 const USER_CREATE_URL = process.env.API_URL + 'api/user/new';
+const TAPI_API_KEY = process.env.TAPI_API_KEY
 
 export default {
   components: {
@@ -35,10 +36,6 @@ export default {
   },
   methods: {
     async userCreate() {
-      axios.defaults.headers.common = {
-        'X-Requested-With': 'XMLHttpRequest',
-        'API_KEY': process.env.TAPI_API_KEY
-      };
       await axios.post(
         USER_CREATE_URL,
         {
@@ -47,6 +44,12 @@ export default {
             'name': this.user_name,
             'password': this.user_pass
           },
+        },
+        {
+          headers: { 
+            'Content-Type': 'application/json',
+            'API_KEY': TAPI_API_KEY
+          }
         })
           .then(response => console.log(response.data))
           .catch(err => console.log(err));
