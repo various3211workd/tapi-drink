@@ -1,8 +1,8 @@
 <template>
   <div id="app">
-    <v-app id="inspire">
+    <v-app id="inspire" style="background: #FFCC80">
       <!-- header -->
-      <v-toolbar color="blue-grey darken-2" dark fixed app clipped-right>
+      <v-toolbar color="orange darken-2" dark fixed app clipped-right>
         <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
         <v-toolbar-title>Tapi-Drink</v-toolbar-title>
         <v-spacer></v-spacer>
