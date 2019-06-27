@@ -1,12 +1,27 @@
 <template>
   <section class="container">
     <div>
-      <input v-model="user_name" placeholder="edit me">
-      <input v-model="user_email" placeholder="edit me">
-      <input v-model="user_pass" placeholder="edit me">
+      <!-- success login -->
+      <div v-if="this.response.message === 'success!!'">
+        <h1>アカウントを作成しました!!</h1>
+      </div>
+      <!-- can't login... -->
+      <div v-else>
+        <h1>アカウントの作成に失敗しました...</h1>
+      </div>
+
+      <br>
+      ユーザ名: <input v-model="user_name" placeholder="edit me">
+      <br>
+      メールアドレス:　<input v-model="user_email" placeholder="edit me">
+      <br>
+      パスワード: <input v-model="user_pass" placeholder="edit me">
+      <br>
       <input v-model="user_repass" placeholder="edit me">
+      <br>
       
       <button @click="userCreate">アカウント作成</button>
+      <br>
     </div>
   </section>
 </template>
@@ -14,35 +29,43 @@
 <script>
 import axios from 'axios'
 
-const USER_CREATE_URL = 'http://localhost:3000/user/new';
+const USER_CREATE_URL = process.env.API_URL + 'api/user/new';
+const TAPI_API_KEY = process.env.TAPI_API_KEY
 
 export default {
   components: {
   },
   data() {
     return {
-      message: '',
+      response: '',
       user_name: '',
       user_email: '',
       user_pass: '',
-      user_repass: ''
+      user_repass: '',
     };
   },
   methods: {
-    async debugFunc() {
-      this.items = await this.$axios.$get(
-        DEBUG_URL
-      );
-    },
     async userCreate() {
-      this.message = await this.$axios.$POST(
+      await axios.post(
         USER_CREATE_URL,
         {
-          'user[name]': this.user_email,
-          'user[email]': this.user_name,
-          'user[password]': this.user_pass
-        });
-    },
+          'user': {
+            'email': this.user_email,
+            'name': this.user_name,
+            'password': this.user_pass
+          },
+        },
+        {
+          headers: { 
+            'Content-Type': 'application/json',
+            'API_KEY': TAPI_API_KEY
+          }
+        })
+        .then(res => {
+          this.response = res.data;
+        })
+        .catch(err => console.log(err));
+    }
   }
 }
 
