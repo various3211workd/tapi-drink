@@ -1,20 +1,46 @@
 <template>
   <section class="container">
-    <div>
-      <!-- success login -->
-      <div v-if="this.response.message === 'succesful login'">
-        <h1>ログインに成功しました!!</h1>
-      </div>
-      <!-- can't login... -->
-      <div v-else-if="this.response.message === 'failed login'">
-        <h1>ログインに失敗しました...</h1>
-      </div>
+      <v-content>
+        <v-container fluid fill-height>
+          <v-layout justify-center>
+            <v-flex xs12 sm8>
+              
+              <!-- success login -->
+              <div v-if="this.response.message === 'succesful login'">
+                <v-alert :value="true" type="success">
+                  ログインに成功しました!!
+                </v-alert>
+              </div>
+              <!-- can't login... -->
+              <div v-else-if="this.response.message === 'failed login'">
+                <v-alert :value="true" type="error">
+                  ログインに失敗しました...
+                </v-alert>
+              </div>
+              <br><br><br>
 
-      <br>
-      <input v-model="user_email" placeholder="edit me">
-      <input v-model="user_pass" placeholder="edit me">
-      <button @click="userLogin">ログイン</button>
-    </div>
+              <!-- login form -->
+              <div v-if="this.response.message !== 'succesful login'">
+                <v-card class="elevation-12">
+                  <v-toolbar dark color="amber darken-1">
+                    <v-toolbar-title>ログイン</v-toolbar-title>
+                  </v-toolbar>
+                  <v-card-text>
+                    <v-form>
+                      <v-text-field prepend-icon="mail" v-model="user_email" label="メールアドレス" type="text"></v-text-field>
+                      <v-text-field prepend-icon="lock" v-model="user_pass" label="パスワード" type="password"></v-text-field>
+                    </v-form>
+                  </v-card-text>
+                  <v-card-actions>
+                    <v-spacer></v-spacer>
+                    <v-btn @click="userLogin" color="amber darken-1">ログイン</v-btn>
+                  </v-card-actions>
+                </v-card>
+              </div>
+            </v-flex>
+          </v-layout>
+        </v-container>
+      </v-content>
   </section>
 </template>
 
