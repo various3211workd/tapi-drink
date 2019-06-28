@@ -35,22 +35,20 @@ module Api
 
     # ///////////////////////////////////////////////
     # delete_user function
-    #
-    # @param password
+    # @header user_token
     #
     # render json{ message: "complete" }
     #           or
     # render json{ message: "error" }
     # ///////////////////////////////////////////////
     def delete_user
-      input_user_password = delete_user_params[:password]
-      user = User.find_by(password: input_user_password)
+      user_token = request.headers[:HTTP_USER_TOKEN]
+      user = User.find_by(user_token: user_token)
       user.destroy!
       render json:{ message: "complete" }
     rescue => e
       render json:{ message: "error" }
     end
-
 
     private
     def user_params
@@ -58,11 +56,7 @@ module Api
     end
 
     def login_params
-      params.fetch(:login, {}).permit(:email, :password)
-    end
-
-    def delete_user_params
-      params.fetch(:delete_user, {}).permit(:password)
+      params.fetch(:user, {}).permit(:email, :password)
     end
 
   end
