@@ -1,6 +1,5 @@
 <template>
   <section class="container">
-    <v-app id="inspire">
       <v-content>
         <v-container fluid fill-height>
           <v-layout justify-center>
@@ -23,7 +22,7 @@
               <!-- login form -->
               <div v-if="this.response.message !== 'succesful login'">
                 <v-card class="elevation-12">
-                  <v-toolbar dark color="primary">
+                  <v-toolbar dark color="amber darken-1">
                     <v-toolbar-title>ログイン</v-toolbar-title>
                   </v-toolbar>
                   <v-card-text>
@@ -34,7 +33,7 @@
                   </v-card-text>
                   <v-card-actions>
                     <v-spacer></v-spacer>
-                    <v-btn @click="userLogin" color="primary">ログイン</v-btn>
+                    <v-btn @click="userLogin" color="amber darken-1">ログイン</v-btn>
                   </v-card-actions>
                 </v-card>
               </div>
@@ -42,7 +41,6 @@
           </v-layout>
         </v-container>
       </v-content>
-    </v-app>
   </section>
 </template>
 

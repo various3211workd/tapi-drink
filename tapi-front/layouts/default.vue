@@ -4,7 +4,9 @@
       <!-- header -->
       <v-toolbar color="orange darken-2" dark fixed app clipped-right>
         <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
-        <v-toolbar-title>Tapi-Drink</v-toolbar-title>
+        <v-toolbar-title>
+          <router-link to="/" style="color: white; text-decoration: none;">Tapi-Drink</router-link>
+        </v-toolbar-title>
         <v-spacer></v-spacer>
         <v-toolbar-items class="hidden-sm-and-down">
           <v-btn flat v-for="item in items" :key="item.title" :to="item.url">
@@ -15,10 +17,9 @@
       
       <!-- drawer -->
       <v-navigation-drawer fixed v-model="drawer" app>
-        <v-toolbar flat>
+        <v-toolbar flat color="orange darken-4">
           <v-list>
             <v-list-tile>
-              <!-- watch loggin state -->
               <div v-if="$store.getters.isSignedIn">
                 <v-list-tile avatar>
                   <v-list-tile-avatar>
@@ -34,18 +35,37 @@
             </v-list-tile>
           </v-list>
         </v-toolbar>
-        <v-list dense class="pt-0">
-        <v-list-tile v-for="item in items" :key="item.title" :to="item.url">
-          <v-list-tile-action>
-            <v-icon>{{ item.icon }}</v-icon>
-          </v-list-tile-action>
-          <v-list-tile-content>
-            <v-list-tile-title>{{ item.title }}</v-list-tile-title>
-          </v-list-tile-content>
-        </v-list-tile>
-      </v-list>
+
+        <v-list>
+          <v-list-tile>
+            <v-list-tile-action>
+              <v-icon>home</v-icon>
+            </v-list-tile-action>
+            <v-list-tile-title>ホーム画面</v-list-tile-title>
+          </v-list-tile>
+
+          <v-list-group prepend-icon="account_circle" value="true">
+            <template v-slot:activator>
+              <v-list-tile>
+                <v-list-tile-title>アカウント</v-list-tile-title>
+              </v-list-tile>
+            </template>
+
+          <v-list dense class="pt-0">
+            <v-list-tile v-for="crud in cruds" :key="crud.title" :to="crud.url">
+              <v-list-tile-action>
+                <v-icon>{{ crud.icon }}</v-icon>
+              </v-list-tile-action>
+              <v-list-tile-content>
+                <v-list-tile-title>{{ crud.title }}</v-list-tile-title>
+              </v-list-tile-content>
+            </v-list-tile>
+          </v-list>
+          
+          </v-list-group>
+        </v-list>
       </v-navigation-drawer>
-      
+
       <!-- content -->
       <v-content>
         <v-container fluid fill-height>
@@ -82,14 +102,14 @@ export default {
     /* 
       in pages view header
     */
-    items: [
-      { title: 'Home', icon: 'home', url: '/' },
-      { title: 'CreateUser', icon: 'fa fa-user-plus', url: '/create_user' },
-      { title: 'LoginUser', icon: 'fa fa-user', url: '/login_user' },
-    ],
     drawer: false,
     drawerRight: true,
-    left: null
+    left: null,
+    cruds: [
+      { title: 'ログイン', icon: 'fa fa-user', url: '/login_user' },
+      { title: 'ユーザ作成', icon: 'fa fa-user-plus', url: '/create_user' },
+      { title: 'ユーザ削除', icon: 'fa fa-user-minus', url: '/delete_user' },
+    ]
   })
 }
 </script>
