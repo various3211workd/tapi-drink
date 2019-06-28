@@ -7,9 +7,8 @@ module Api
     end
 
     def create
-      #message = Shop.create!(shop_params)
-      p params[:images]
-      render json: { debug_message: "test" }
+      Shop.create!(shop_params)
+      render json:{ message: "success create" }
     rescue => e
       render json:{ message: "failed create" }
     end
