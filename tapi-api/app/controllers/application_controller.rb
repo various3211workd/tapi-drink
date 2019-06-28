@@ -12,7 +12,8 @@ class ApplicationController < ActionController::API
 
   def api_authenticate
     request_api_key = request.headers[:HTTP_API_KEY]
-    unless request_api_key == ENV['API_KEY']
+    api_key = Rails.application.credentials.tapi_drink[:API_KEY]
+    unless request_api_key == api_key
       render_unauthorized
     end
   end
