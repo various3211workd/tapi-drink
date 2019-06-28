@@ -31,17 +31,32 @@ module Api
                       user_name: ""
                     } and return
       end
+    end
 
+    # ///////////////////////////////////////////////
+    # delete_user function
+    # @header user_token
+    #
+    # render json{ message: "complete" }
+    #           or
+    # render json{ message: "error" }
+    # ///////////////////////////////////////////////
+    def delete_user
+      user_token = request.headers[:HTTP_USER_TOKEN]
+      user = User.find_by(user_token: user_token)
+      user.destroy!
+      render json:{ message: "complete" }
+    rescue => e
+      render json:{ message: "error" }
     end
 
     private
-
     def user_params
       params.fetch(:user, {}).permit(:name, :email, :password)
     end
 
     def login_params
-      params.fetch(:login, {}).permit(:email, :password)
+      params.fetch(:user, {}).permit(:email, :password)
     end
 
   end
