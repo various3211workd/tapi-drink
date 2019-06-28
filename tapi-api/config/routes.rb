@@ -4,5 +4,6 @@ Rails.application.routes.draw do
     post 'user/new' , to: 'users#create'
     post 'auth/login' , to: 'users#login'
     get  'shops/show' , to: 'shops#show'
+    post 'shops/create' , to: 'shops#create'
   end
 end
