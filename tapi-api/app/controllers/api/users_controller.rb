@@ -1,6 +1,6 @@
 module Api
   class UsersController < ApplicationController
-    skip_before_action :user_authenticate , only: [:create, :login]
+    skip_before_action :user_authenticate , only: [:create, :login, :delete_user]
 
     def create
       @user = User.new(user_params)
@@ -16,7 +16,6 @@ module Api
       if !input_user_login_data[:email] || !input_user_login_data[:password]
         render json:{ params_error: "the email or password is incorrect" } and return
       end
-
       user = User.find_by(email: input_user_login_data[:email])
       if user && user.authenticate(input_user_login_data[:password])
         render json:{ 

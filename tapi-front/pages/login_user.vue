@@ -78,7 +78,9 @@ export default {
         })
         .then(res => {
           this.response = res.data;
-          this.$store.commit('login', res.data.user_name);
+          if( this.response.message === 'succesful login' ) {
+            this.$store.commit('login', res.data.user_name, res.data.user_token);
+          }
         })
         .catch(err => console.log(err));
     }

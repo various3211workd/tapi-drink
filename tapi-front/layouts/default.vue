@@ -8,11 +8,6 @@
           <router-link to="/" style="color: white; text-decoration: none;">Tapi-Drink</router-link>
         </v-toolbar-title>
         <v-spacer></v-spacer>
-        <v-toolbar-items class="hidden-sm-and-down">
-          <v-btn flat v-for="item in items" :key="item.title" :to="item.url">
-            {{ item.title }}
-          </v-btn>
-        </v-toolbar-items>
       </v-toolbar>
       
       <!-- drawer -->
@@ -21,6 +16,7 @@
           <v-list>
             <v-list-tile>
               <div v-if="$store.getters.isSignedIn">
+                <setLoginData/>
                 <v-list-tile avatar>
                   <v-list-tile-avatar>
                     <v-icon medium>account_circle</v-icon>
@@ -37,7 +33,7 @@
         </v-toolbar>
 
         <v-list>
-          <v-list-tile>
+          <v-list-tile to="/">
             <v-list-tile-action>
               <v-icon>home</v-icon>
             </v-list-tile-action>
@@ -52,14 +48,27 @@
             </template>
 
           <v-list dense class="pt-0">
-            <v-list-tile v-for="crud in cruds" :key="crud.title" :to="crud.url">
-              <v-list-tile-action>
-                <v-icon>{{ crud.icon }}</v-icon>
-              </v-list-tile-action>
-              <v-list-tile-content>
-                <v-list-tile-title>{{ crud.title }}</v-list-tile-title>
-              </v-list-tile-content>
-            </v-list-tile>
+            <div v-if="$store.getters.isSignedIn">
+              <v-list-tile v-for="crud in crudsLogin" :key="crud.title" :to="crud.url">
+                <v-list-tile-action>
+                  <v-icon>{{ crud.icon }}</v-icon>
+                </v-list-tile-action>
+                <v-list-tile-content>
+                  <v-list-tile-title>{{ crud.title }}</v-list-tile-title>
+                </v-list-tile-content>
+              </v-list-tile>
+            </div>
+            <div v-else>
+              <v-list-tile v-for="crud in cruds" :key="crud.title" :to="crud.url">
+                <v-list-tile-action>
+                  <v-icon>{{ crud.icon }}</v-icon>
+                </v-list-tile-action>
+                <v-list-tile-content>
+                  <v-list-tile-title>{{ crud.title }}</v-list-tile-title>
+                </v-list-tile-content>
+              </v-list-tile>
+            </div>
+
           </v-list>
           
           </v-list-group>
@@ -90,12 +99,14 @@
 import MyFooter from '~/components/Footer';
 import CreateUser from '~/pages/create_user';
 import LoginUser from '~/pages/login_user';
+import DeleteUser from '~/pages/delete_user';
 
 export default {
   components: {
     MyFooter,
     CreateUser,
-    LoginUser
+    LoginUser,
+    DeleteUser
   },
   data: () => ({
     drawer: null,
@@ -108,6 +119,8 @@ export default {
     cruds: [
       { title: 'ログイン', icon: 'fa fa-user', url: '/login_user' },
       { title: 'ユーザ作成', icon: 'fa fa-user-plus', url: '/create_user' },
+    ],
+    crudsLogin: [
       { title: 'ユーザ削除', icon: 'fa fa-user-minus', url: '/delete_user' },
     ]
   })
