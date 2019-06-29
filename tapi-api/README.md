@@ -258,7 +258,7 @@ Failure  message
 ShopCreate API  returns a success_message when create is successful and an error message when failure
 #### EndPoint
 ```
-POST localhost:3000/api/shops/show
+GET localhost:3000/api/shops/show
 ```
 #### Params
 |Specified  |Param  |Type  |Description  |
