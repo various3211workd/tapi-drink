@@ -55,7 +55,7 @@ module Api
     end
 
     def login_params
-      params.fetch(:user, {}).permit(:email, :password)
+      params.fetch(:login, {}).permit(:email, :password)
     end
 
   end
