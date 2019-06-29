@@ -60,6 +60,7 @@ POST localhost:3000/api/user/new
 #### Params
 |Specified  |Param  |Type  |Description  |
 |-----------|-------|------|-------------|
+|Header       |API_KEY  |String  |tapi-drink  API KEY  |
 |Body       |name  |String  |UserName  |
 |Body       |email  |String  |EmailAdress  |
 |Body       |password  |String  |password  |
@@ -68,7 +69,7 @@ POST localhost:3000/api/user/new
 Please use the curl command to check the operation
 
 ```
-$ curl -X POST http://localhost:3000/api/user/new -d 'user[email]={user_email}&user[name]={user_name}&user[password]={user_password}'
+$ curl -H 'API_KEY:{API_KEY}' -X POST http://localhost:3000/api/user/new -d 'user[email]={user_email}&user[name]={user_name}&user[password]={user_password}'
 ```
 
 Please replace the {user_email} and {user_name} and {user_password} part with a concrete value  
@@ -121,6 +122,7 @@ POST localhost:3000/api/auth/login
 #### Params
 |Specified  |Param  |Type  |Description  |
 |-----------|-------|------|-------------|
+|Header       |API_KEY  |String  |tapi-drink  API KEY  |
 |Body       |email  |String  |EmailAdress  |
 |Body       |password  |String  |password  |
 #### Responce
@@ -128,7 +130,7 @@ POST localhost:3000/api/auth/login
 Please use the curl command to check the operation
 
 ```
-$ curl -X POST http://localhost:3000/api/auth/login -d 'login[email]={login_email}&login[password]={login_password}'
+$ curl -H 'API_KEY:{API_KEY}' -X POST http://localhost:3000/api/auth/login -d 'login[email]={login_email}&login[password]={login_password}'
 ```
 
 Please replace the {login_email} and {login_password} part with a concrete value  
@@ -184,6 +186,7 @@ DELETE localhost:3000/api/user/delete
 #### Params
 |Specified  |Param  |Type  |Description  |
 |-----------|-------|------|-------------|
+|Header       |API_KEY  |String  |tapi-drink  API KEY  |
 |Header       |USER_TOKEN  |String  |user_token  |
 #### Responce
 <details><summary>Example</summary><div>
@@ -221,6 +224,8 @@ POST localhost:3000/api/shops/create
 #### Params
 |Specified  |Param  |Type  |Description  |
 |-----------|-------|------|-------------|
+|Header       |API_KEY  |string  |tapi-drink API KEY  |
+|Header       |USER_TOKEN  |string  |user_token  |
 |Body       |name  |String  |Shop Name  |
 |Body       |address  |String  |Shop Address  |
 |Body       |details  |text  |Shop Details  |
@@ -255,7 +260,7 @@ Failure  message
 ***
 
 ### [GET] ShopList API
-ShopCreate API  returns a success_message when create is successful and an error message when failure
+ShopList API  returns a list data when search is successful
 #### EndPoint
 ```
 GET localhost:3000/api/shops/show
@@ -263,6 +268,7 @@ GET localhost:3000/api/shops/show
 #### Params
 |Specified  |Param  |Type  |Description  |
 |-----------|-------|------|-------------|
+|Header       |API_KEY  |string  |tapi-drink API KEY  |
 |Body       |number  |integer  |Number of searches  |
 
 #### Responce
@@ -273,7 +279,7 @@ Please use the curl command to check the operation
 $ curl -H 'API_KEY:{API_KEY}' -H 'USER_TOKEN:{USER_TOKEN}' -X GET http://localhost:3000/api/shops/show -d "number=10"
 ```
 
-return  message
+return  shop_list_datas
   
 ```
 {
