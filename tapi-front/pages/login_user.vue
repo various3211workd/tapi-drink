@@ -65,7 +65,7 @@ export default {
       await axios.post(
         LOGIN_URL,
         {
-          'login': {
+          'user': {
             'email': this.user_email,
             'password': this.user_pass
           }
