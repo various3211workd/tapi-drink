@@ -121,6 +121,7 @@ export default {
       { title: 'ユーザ作成', icon: 'fa fa-user-plus', url: '/create_user' },
     ],
     crudsLogin: [
+      { title: 'ログアウト', icon: 'fa fa-user-minus', url: '/logout_user' },
       { title: 'ユーザ削除', icon: 'fa fa-user-minus', url: '/delete_user' },
     ]
   })
