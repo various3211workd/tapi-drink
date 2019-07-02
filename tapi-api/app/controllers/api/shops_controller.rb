@@ -4,7 +4,7 @@ module Api
 
     def show
       number_of_shops = set_value_in_number_of_shops(params[:number].to_i)
-      shop_list = Shop.limit(number_of_shops).order("created_at")
+      shop_list = User.fetch_shop_list(number_of_shops)
       render json:{ shop_list_data: shop_list }
     end
 

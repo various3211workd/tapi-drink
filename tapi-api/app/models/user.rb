@@ -8,4 +8,11 @@ class User < ApplicationRecord
   validates :password, length: { minimum: 4, maximum: 32 }
   has_secure_password
   has_secure_token :user_token
+
+  def self.fetch_shop_list(number)
+    User.joins(:shops)
+        .select("shops.*,users.name as user_name")
+        .order("shops.created_at desc")
+        .limit(number)
+  end
 end
