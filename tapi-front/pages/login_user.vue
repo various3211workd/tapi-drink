@@ -46,6 +46,7 @@
 
 <script>
 import axios from 'axios'
+import { mapMutations } from 'vuex'
 
 const LOGIN_URL = process.env.API_URL + 'api/auth/login';
 const TAPI_API_KEY = process.env.TAPI_API_KEY;
@@ -79,7 +80,9 @@ export default {
         .then(res => {
           this.response = res.data;
           if( this.response.message === 'succesful login' ) {
-            this.$store.commit('login', res.data.user_name, res.data.user_token);
+            this.$store.commit('login', {
+              user_name: this.response.user_name, 
+              user_token: this.response.user_token});
           }
         })
         .catch(err => console.log(err));

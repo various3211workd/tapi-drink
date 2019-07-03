@@ -24,6 +24,7 @@
               </div>
 
                 <!-- user delete form -->     
+              <div v-if="this.response.message !== 'complete'">
                 <v-card class="elevation-12">
                   <v-toolbar dark color="amber darken-1">
                     <v-toolbar-title>本当に削除しますか？</v-toolbar-title>
@@ -37,7 +38,8 @@
                     <v-btn @click="userDelete" color="amber darken-1">削除します</v-btn>
                   </v-card-actions>
                 </v-card>
-            
+              </div>
+              
             </v-flex>
           </v-layout>
         </v-container>
@@ -47,8 +49,9 @@
 
 <script>
 import axios from 'axios'
+import { mapMutations } from 'vuex'
 
-const USER_DELETE_URL = process.env.API_URL + 'api/auth/login';
+const USER_DELETE_URL = process.env.API_URL + 'api/user/delete';
 const TAPI_API_KEY = process.env.TAPI_API_KEY;
 
 export default {
@@ -61,21 +64,18 @@ export default {
   },
   methods: {
     async userDelete() {
-      await axios.post(
+      await axios.delete(
         USER_DELETE_URL,
-        {
-          'login': {
-            'email': this.user_email,
-          }
-        },
         {
           headers: { 
             'Content-Type': 'application/json',
-            'API_KEY': TAPI_API_KEY
+            'API_KEY': TAPI_API_KEY,
+            'USER_TOKEN': this.$store.state.user_token
           }
         })
         .then(res => {
           this.response = res.data;
+          console.log(this.$store.state.user_token);
           if( this.response.message === 'complete' ) {
             this.$store.commit('logout');
           }

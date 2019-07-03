@@ -42,6 +42,7 @@ module Api
     def delete_user
       user_token = request.headers[:HTTP_USER_TOKEN]
       user = User.find_by(user_token: user_token)
+      p user_token
       user.destroy!
       render json:{ message: "complete" }
     rescue => e
