@@ -5,7 +5,6 @@ module Api
     def create
       user = User.new(user_params)
       user.save!
-      p "test"
       render json:{ message: "success!!" }
     rescue => e
       render json:{ message: "failed save" }
