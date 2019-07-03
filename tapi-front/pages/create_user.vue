@@ -4,7 +4,6 @@
         <v-container fluid fill-height>
           <v-layout justify-center>
             <v-flex xs12 sm8>
-              {{user_repass}}{{user_pass}}
               <!-- success create account -->
               <div v-if="this.response.message === 'success!!'">
                 <v-alert :value="true" type="success">
