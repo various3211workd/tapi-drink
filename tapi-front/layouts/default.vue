@@ -138,15 +138,15 @@ export default {
     drawer: false,
     drawerRight: true,
     shops: [
-      { title: 'お店を追加', icon: 'fa fa-shop', url: '/add_shop' },
+      { title: 'お店を追加', icon: '', url: '/add_shop' },
     ],
     cruds: [
       { title: 'ログイン', icon: 'fa fa-user', url: '/login_user' },
       { title: 'ユーザ作成', icon: 'fa fa-user-plus', url: '/create_user' },
     ],
     crudsLogin: [
-      { title: 'ログアウト', icon: 'fa fa-user-plus', url: '/logout_user' },
-      { title: 'ユーザ削除', icon: 'fa fa-user-minus', url: '/delete_user' },
+      { title: 'ログアウト', icon: '', url: '/logout_user' },
+      { title: 'ユーザ削除', icon: '', url: '/delete_user' },
     ]
   })
 }
