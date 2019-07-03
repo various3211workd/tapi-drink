@@ -1,18 +1,23 @@
 <template>
   <section class="container">
-<v-layout>
-    <v-flex xs12 sm6 offset-sm3  >
+      <v-content>
+        <v-container fluid fill-height>
+          <v-layout justify-center>
+    <v-flex xs12 sm6 md6 >
       <div v-for="(item, index) in shop_list" :key="index">
       <v-card>
-        <v-img
-          class="white--text"
-          height="200px"
-          src="https://cdn.vuetifyjs.com/images/cards/docks.jpg"
-        >
-        </v-img>
+    <v-carousel height="300">
+      <v-carousel-item
+        v-for="(item,i) in items"
+        :key="i"
+        :src="item.src"
+        reverse-transition="fade"
+        transition="fade"
+      ></v-carousel-item>
+    </v-carousel>
         <v-card-text>
-          <span>{{item.name}}</span><br>
-          <span>{{item.address}}</span><br>
+          <p>{{item.name}}</p>
+          <p>aaaaaaaaaaaaaaaa</p>
           <span>{{item.details}}</span><br>
           <span>投稿者{{item.user_id}}さん</span>
         </v-card-text>
@@ -23,23 +28,43 @@
       <br>
       </div>
     </v-flex>
-  </v-layout>
+          </v-layout>
+        </v-container>
+      </v-content>
   </section>
 </template>
 
 <script>
 import axios from 'axios'
+import Carousel from 'vue-carousel/src/Carousel.vue'
+import Slide from 'vue-carousel/src/Slide.vue'
 
 const FECTH_SHOP_LIST_URL = process.env.API_URL + 'api/shops/show';
 const TAPI_API_KEY = process.env.TAPI_API_KEY
 
 export default {
   components: {
+    Carousel,
+    Slide
   },
   data() {
     return{
       default_data: 10,
-      shop_list: []
+      shop_list: [],
+        items: [
+          {
+            src: 'https://cdn.vuetifyjs.com/images/carousel/squirrel.jpg'
+          },
+          {
+            src: 'https://cdn.vuetifyjs.com/images/carousel/sky.jpg'
+          },
+          {
+            src: 'https://cdn.vuetifyjs.com/images/carousel/bird.jpg'
+          },
+          {
+            src: 'https://cdn.vuetifyjs.com/images/carousel/planet.jpg'
+          }
+        ]
     }
   },
   mounted (){
