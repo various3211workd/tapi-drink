@@ -82,7 +82,7 @@ export default {
           if( this.response.message === 'succesful login' ) {
             this.$store.commit('login', {
               user_name: this.response.user_name, 
-              user_token: this.response.usertoken});
+              user_token: this.response.user_token});
           }
         })
         .catch(err => console.log(err));
