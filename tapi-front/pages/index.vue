@@ -47,6 +47,7 @@ export default {
     return{
       default_data: 10,
       shop_list: [],
+      images_url_list: [],
       items: [
         { src: '/img/noimage.png' }
       ]
@@ -62,7 +63,10 @@ export default {
         }
       }
     )
-    .then(res => (this.shop_list = res.data.shop_list_data))
+    .then(res => {
+      this.shop_list = res.data.shop_list_data
+      this.images_url_list = res.data.images_url
+    })
     .catch(err => console.log(err));
   }
 }
