@@ -47,8 +47,9 @@
 
 <script>
 import axios from 'axios'
+import { mapMutations } from 'vuex'
 
-const USER_DELETE_URL = process.env.API_URL + 'api/auth/login';
+const USER_DELETE_URL = process.env.API_URL + 'api/user/delete';
 const TAPI_API_KEY = process.env.TAPI_API_KEY;
 
 export default {
@@ -61,17 +62,13 @@ export default {
   },
   methods: {
     async userDelete() {
-      await axios.post(
+      await axios.delete(
         USER_DELETE_URL,
-        {
-          'login': {
-            'email': this.user_email,
-          }
-        },
         {
           headers: { 
             'Content-Type': 'application/json',
-            'API_KEY': TAPI_API_KEY
+            'API_KEY': TAPI_API_KEY,
+            'USER_TOKEN': this.$store.state.user_token
           }
         })
         .then(res => {
