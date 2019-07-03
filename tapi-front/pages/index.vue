@@ -36,16 +36,12 @@
 
 <script>
 import axios from 'axios'
-import Carousel from 'vue-carousel/src/Carousel.vue'
-import Slide from 'vue-carousel/src/Slide.vue'
 
 const FECTH_SHOP_LIST_URL = process.env.API_URL + 'api/shops/show';
 const TAPI_API_KEY = process.env.TAPI_API_KEY
 
 export default {
   components: {
-    Carousel,
-    Slide
   },
   data() {
     return{
