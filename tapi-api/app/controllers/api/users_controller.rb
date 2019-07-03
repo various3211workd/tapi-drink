@@ -3,9 +3,9 @@ module Api
     skip_before_action :user_authenticate , only: [:create, :login, :delete_user]
 
     def create
-      @user = User.new(user_params)
-      p user_params
-      @user.save!
+      user = User.new(user_params)
+      user.save!
+      p "test"
       render json:{ message: "success!!" }
     rescue => e
       render json:{ message: "failed save" }
@@ -51,7 +51,7 @@ module Api
 
     private
     def user_params
-      params.fetch(:user, {}).permit(:name, :email, :password)
+      params.fetch(:user, {}).permit(:email, :name, :password, :password_confirmation)
     end
 
     def login_params

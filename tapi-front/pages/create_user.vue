@@ -4,7 +4,7 @@
         <v-container fluid fill-height>
           <v-layout justify-center>
             <v-flex xs12 sm8>
-              
+              {{user_repass}}{{user_pass}}
               <!-- success create account -->
               <div v-if="this.response.message === 'success!!'">
                 <v-alert :value="true" type="success">
@@ -73,7 +73,8 @@ export default {
           'user': {
             'email': this.user_email,
             'name': this.user_name,
-            'password': this.user_pass
+            'password': this.user_pass,
+            'password_confirmation': this.user_repass
           },
         },
         {
