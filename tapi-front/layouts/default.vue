@@ -12,7 +12,7 @@
       
       <!-- drawer -->
       <v-navigation-drawer fixed v-model="drawer" app>
-        <v-toolbar flat color="orange darken-4">
+        <v-toolbar flat color="orange darken-2">
           <v-list>
             <v-list-tile>
               <div v-if="$store.getters.isSignedIn">
@@ -23,7 +23,7 @@
                   </v-list-tile-avatar>
                   <v-list-tile-content>
                     <v-list-tile-title class="title">
-                      {{ $store.state.user }}
+                      <p style="color: white;">{{ $store.state.user }}</p>
                     </v-list-tile-title>
                   </v-list-tile-content>
                 </v-list-tile>
