@@ -276,7 +276,7 @@ GET localhost:3000/api/shops/show
 Please use the curl command to check the operation
 
 ```
-$ curl -H 'API_KEY:{API_KEY}' -H 'USER_TOKEN:{USER_TOKEN}' -X GET http://localhost:3000/api/shops/show -d "number=10"
+$ curl -H 'API_KEY:{API_KEY}' -X GET http://localhost:3000/api/shops/show -d "number=10"
 ```
 
 return  shop_list_datas
@@ -285,10 +285,10 @@ return  shop_list_datas
 {
   "shop_list_data":
     [
-      {"id":1,"name":"tapi","address":"xxx","details":"aaa","created_at":"2019-06-28T01:31:51.311Z","updated_at":"2019-06-26T04:42:13.053Z","user_id":1},
-      {"id":2,"name":"tapi-drink","address":"xxx","details":"bbb","created_at":"2019-06-26T04:42:12.975Z","updated_at":"2019-06-26T04:42:12.975Z","user_id":1},
+      {"id":1,"name":"tapi","address":"xxx","details":"aaa","created_at":"2019-06-28T01:31:51.311Z","updated_at":"2019-06-26T04:42:13.053Z","user_id":1,"user_name":"sample"},
+      {"id":2,"name":"tapi-drink","address":"xxx","details":"bbb","created_at":"2019-06-26T04:42:12.975Z","updated_at":"2019-06-26T04:42:12.975Z","user_id":1,"user_name":"sample"},
       :
-      {"id":10,"name":"tapitapi","address":"xxxmmm","details":"zzz","created_at":"2019-06-26T04:42:12.975Z","updated_at":"2019-06-26T04:42:12.975Z","user_id":1}
+      {"id":10,"name":"tapitapi","address":"xxxmmm","details":"zzz","created_at":"2019-06-26T04:42:12.975Z","updated_at":"2019-06-26T04:42:12.975Z","user_id":1,"user_name":"sample"}
     ]
 }
 ```
