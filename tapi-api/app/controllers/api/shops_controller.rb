@@ -4,7 +4,7 @@ module Api
 
     def show
       number_of_shops = set_value_in_number_of_shops(params[:number].to_i)
-      shop_list = User.fetch_shop_list(number_of_shops)
+      shop_list = Shop.order('created_at desc').limit(number_of_shops)
       images_url_list = fetch_images_url_list(shop_list)
       p images_url_list
       render json:{
@@ -23,7 +23,7 @@ module Api
     private
 
     def shop_params
-      params.require(:shop).permit(:name, :address, :details, :user_id, images: [] )
+      params.require(:shop).permit(:name, :address, :details, :user_id, :user_name, images: [] )
     end
 
     def set_value_in_number_of_shops(number)
@@ -38,9 +38,14 @@ module Api
 
     def fetch_images_url_list(shop_list)
       images_url_list = []
-      unless shop_list.images.attached?
-        images_url_list << "/img/noimage.png"
+      shop_list.each do |item|
+        unless item.images.attached?
+          images_url_list << "/img/noimage.png"
+          break
+        end
       end
+
+      images_url_list
     end
 
   end

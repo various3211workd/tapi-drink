@@ -8,9 +8,8 @@
                 <v-card>
                   <v-carousel height="40vh">
                     <v-carousel-item
-                      v-for="(item,index) in items"
-                      :key="index"
-                      :src="item.src"
+                      v-repeat="images_url_list"
+                      :src={{$value}}
                       reverse-transition="fade"
                       transition="fade"
                     ></v-carousel-item>

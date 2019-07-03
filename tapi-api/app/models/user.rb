@@ -10,12 +10,10 @@ class User < ApplicationRecord
   validates :password, length: { minimum: 4, maximum: 32 }
 
   def self.fetch_shop_list(number)
-    shop_list = User.joins(:shops)
+    User.joins(:shops)
         .select("shops.*,users.name as user_name")
         .order("shops.created_at desc")
         .limit(number)
-
-    p shop_list.images
   end
 
 end

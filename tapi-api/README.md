@@ -230,14 +230,15 @@ POST localhost:3000/api/shops/create
 |Body       |address  |String  |Shop Address  |
 |Body       |details  |text  |Shop Details  |
 |Body       |user_id  |integer  |ID of created user  |
-|Body       |images[]  |image  |Shop images  |
+|Body       |user_name  |string  |user name  |
+|Body       |images  |image  |Shop images  |
 
 #### Responce
 <details><summary>Example</summary><div>
 Please use the curl command to check the operation
 
 ```
-$ curl -H 'API_KEY:{API_KEY}' -H 'USER_TOKEN:{USER_TOKEN}' -X POST http://localhost:3000/api/shops/create -d 'shop[name]={shop_name}&shop[address]={shop_addres}&shop[details]={shop_details}&shop[user_id]={user_id}'
+$ curl -H 'API_KEY:{API_KEY}' -H 'USER_TOKEN:{USER_TOKEN}' -X POST http://localhost:3000/api/shops/create -d 'shop[name]={shop_name}&shop[address]={shop_addres}&shop[details]={shop_details}&shop[user_id]={user_id}&shop[user_name]={user_name}'
 ```
 
 Successful  message
