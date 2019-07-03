@@ -3,31 +3,31 @@
       <v-content>
         <v-container fluid fill-height>
           <v-layout justify-center>
-    <v-flex xs12 sm6 md6 >
-      <div v-for="(item, index) in shop_list" :key="index">
-      <v-card>
-    <v-carousel height="300">
-      <v-carousel-item
-        v-for="(item,i) in items"
-        :key="i"
-        :src="item.src"
-        reverse-transition="fade"
-        transition="fade"
-      ></v-carousel-item>
-    </v-carousel>
-        <v-card-text>
-          <p>{{item.name}}</p>
-          <p>aaaaaaaaaaaaaaaa</p>
-          <span>{{item.details}}</span><br>
-          <span>投稿者{{item.user_id}}さん</span>
-        </v-card-text>
-        <v-card-actions>
-          <v-btn flat color="orange">いいね</v-btn>
-        </v-card-actions>
-      </v-card>
-      <br>
-      </div>
-    </v-flex>
+            <v-flex xs12 sm6 md6 >
+              <div v-for="(item, index) in shop_list" :key="index">
+                <v-card>
+                  <v-carousel height="40vh">
+                    <v-carousel-item
+                      v-for="(item,index) in items"
+                      :key="index"
+                      :src="item.src"
+                      reverse-transition="fade"
+                      transition="fade"
+                    ></v-carousel-item>
+                  </v-carousel>
+                  <v-card-text>
+                    <p>{{item.name}}</p>
+                    <p>{{item.address}}</p>
+                    <span>{{item.details}}</span><br>
+                    <span>投稿者{{item.user_name}}</span>
+                  </v-card-text>
+                  <v-card-actions>
+                    <v-btn flat color="orange">いいね</v-btn>
+                  </v-card-actions>
+                </v-card>
+                <br>
+              </div>
+            </v-flex>
           </v-layout>
         </v-container>
       </v-content>
@@ -51,20 +51,9 @@ export default {
     return{
       default_data: 10,
       shop_list: [],
-        items: [
-          {
-            src: 'https://cdn.vuetifyjs.com/images/carousel/squirrel.jpg'
-          },
-          {
-            src: 'https://cdn.vuetifyjs.com/images/carousel/sky.jpg'
-          },
-          {
-            src: 'https://cdn.vuetifyjs.com/images/carousel/bird.jpg'
-          },
-          {
-            src: 'https://cdn.vuetifyjs.com/images/carousel/planet.jpg'
-          }
-        ]
+      items: [
+        { src: '/img/noimage.png' }
+      ]
     }
   },
   mounted (){
