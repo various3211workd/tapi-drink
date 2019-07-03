@@ -5,5 +5,6 @@ Rails.application.routes.draw do
     post 'auth/login' , to: 'users#login'
     delete 'user/delete', to: 'users#delete_user'
     get  'shops/show' , to: 'shops#show'
+    post 'shops/create' , to: 'shops#create'
   end
 end

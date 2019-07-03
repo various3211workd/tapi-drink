@@ -20,13 +20,12 @@ module Api
         render json:{ 
                       message: "succesful login",
                       user_token: user.user_token ,
-                      user_name: user.name 
+                      user_name: user.name ,
+                      user_id: user.id
                     } and return
       else
         render json:{ 
                       message: "failed login",
-                      user_token: "",
-                      user_name: ""
                     } and return
       end
     end
