@@ -10,7 +10,10 @@
                 <v-alert :value="true" type="success">
                   アカウントを作成しました!!
                 </v-alert>
-                <router-link to="/" style="color: white; text-decoration: none;">ログインする</router-link>
+                <br>
+                <v-btn href="/login_user" color="amber darken-1">
+                  ログインする
+                </v-btn>
               </div>
               <!-- can't create account... -->
               <div v-else-if="this.response.message === 'failed save'">

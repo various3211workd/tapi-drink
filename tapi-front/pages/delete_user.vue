@@ -24,6 +24,7 @@
               </div>
 
                 <!-- user delete form -->     
+              <div v-if="this.response.message !== 'complete'">
                 <v-card class="elevation-12">
                   <v-toolbar dark color="amber darken-1">
                     <v-toolbar-title>本当に削除しますか？</v-toolbar-title>
@@ -37,7 +38,8 @@
                     <v-btn @click="userDelete" color="amber darken-1">削除します</v-btn>
                   </v-card-actions>
                 </v-card>
-            
+              </div>
+              
             </v-flex>
           </v-layout>
         </v-container>
@@ -73,6 +75,7 @@ export default {
         })
         .then(res => {
           this.response = res.data;
+          console.log(this.$store.state.user_token);
           if( this.response.message === 'complete' ) {
             this.$store.commit('logout');
           }
