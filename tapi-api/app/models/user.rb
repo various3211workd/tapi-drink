@@ -8,4 +8,12 @@ class User < ApplicationRecord
   validates :email, presence: true, length: { maximum: 255 }, format: { with: VALID_EMAIL_REGEX }, uniqueness: { case_sensitive: false }
   validates :password_digest, presence: true
   validates :password, length: { minimum: 4, maximum: 32 }
+
+  def self.fetch_shop_list(number)
+    User.joins(:shops)
+        .select("shops.*,users.name as user_name")
+        .order("shops.created_at desc")
+        .limit(number)
+  end
+
 end
