@@ -49,37 +49,42 @@
 <script>
 import axios from 'axios'
 
-const USER_CREATE_URL = process.env.API_URL + 'api/shops/create';
+const SHOP_ADD_URL = process.env.API_URL + 'api/shops/create';
 const TAPI_API_KEY = process.env.TAPI_API_KEY
 
 export default {
   data() {
     return {
       response: '',
-      user_id: '',
       shop_name: '',
       shop_address: '',
       shop_details: '',
-      shop_image: '',
+      shop_image: [],
     };
   },
   methods: {
     async shopAdd() {
       await axios.post(
-        USER_CREATE_URL,
+        SHOP_ADD_URL,
         {
-          'user': {
-            'email': this.user_email,
+          'shop': {
+            'name': this.shop_name,
+            'address': this.shop_address,
+            'details': this.shop_details,
+            'user_id': this.$store.state.user_id,
+            'images': this.shop_image,
           },
         },
         {
           headers: { 
             'Content-Type': 'application/json',
-            'API_KEY': TAPI_API_KEY
+            'API_KEY': TAPI_API_KEY,
+            'USER_TOKEN': this.$store.state.user_token,
           }
         })
         .then(res => {
           this.response = res.data;
+          console.log(this.response);
         })
         .catch(err => console.log(err));
     }
