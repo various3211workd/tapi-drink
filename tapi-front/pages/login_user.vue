@@ -83,7 +83,7 @@ export default {
             this.$store.commit('login', {
               user_name: this.response.user_name, 
               user_token: this.response.user_token,
-              uesr_id: this.response.user_id});
+              user_id: this.response.user_id});
           }
         })
         .catch(err => console.log(err));
