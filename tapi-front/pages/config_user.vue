@@ -36,7 +36,7 @@
                 </v-flex>
                 <v-flex xs12 text-xs-right>
                   <v-btn class="mx-0 font-weight-light" color="success" href="">プロフィールを更新</v-btn>
-                  <v-btn class="mx-0 font-weight-light" color="warning" href="/delete_user">ユーザーを削除する</v-btn>
+                  <v-btn class="mx-0 font-weight-light" color="amber darken-1" href="/delete_user">ユーザーを削除する</v-btn>
                 </v-flex>
               </v-layout>
             </v-container>

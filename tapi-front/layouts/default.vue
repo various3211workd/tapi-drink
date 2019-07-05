@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <v-app id="inspire" style="background: #FFCC80">
+    <v-app id="inspire" style="background-color: #FFE0B2;">
       <!-- header -->
       <v-toolbar color="orange darken-2" dark fixed app clipped-right>
         <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
@@ -8,6 +8,20 @@
           <router-link to="/" style="color: white; text-decoration: none;">Tapi-Drink</router-link>
         </v-toolbar-title>
         <v-spacer></v-spacer>
+        <v-text-field flat solo-inverted hide-details label="検索" prepend-inner-icon="search" class="hidden-sm-and-down"></v-text-field>
+        <div v-if="true">
+        
+        <!-- user action alert -->
+        <v-btn icon>
+          <v-icon color="brown darken-1">notifications</v-icon>
+        </v-btn>
+        </div>
+        <div v-else>
+        <v-btn icon>
+          <v-icon color="teal accent-2">notifications_active</v-icon>
+        </v-btn>
+        </div>
+      
       </v-toolbar>
       
       <!-- drawer -->
