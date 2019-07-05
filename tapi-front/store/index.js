@@ -8,6 +8,7 @@ export const mutations = {
   login(state, payload) {
     state.user = payload.user_name;
     state.user_token = payload.user_token;
+    state.user_id = payload.user_id;
     state.status = true;
   },
   logout(state) {

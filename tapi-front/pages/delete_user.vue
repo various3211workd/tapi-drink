@@ -75,7 +75,6 @@ export default {
         })
         .then(res => {
           this.response = res.data;
-          console.log(this.$store.state.user_token);
           if( this.response.message === 'complete' ) {
             this.$store.commit('logout');
           }
