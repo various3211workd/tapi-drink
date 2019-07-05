@@ -5,7 +5,7 @@ class Shop < ApplicationRecord
   def self.fetch_shop_list(number)
     shop_list = Shop.order('created_at desc').limit(number)
     shop_list_json = []
-    #images_url_list = fetch_images_url_list(shop_list)
+
     shop_list.each do |item|
       shop_list_json << {
         name: item.name,
