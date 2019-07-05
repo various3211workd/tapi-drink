@@ -146,7 +146,7 @@ export default {
     ],
     crudsLogin: [
       { title: 'ログアウト', icon: '', url: '/logout_user' },
-      { title: 'ユーザ削除', icon: '', url: '/delete_user' },
+      { title: 'ユーザ設定', icon: '', url: '/config_user' },
     ]
   })
 }
