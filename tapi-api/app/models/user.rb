@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   has_many :shops, dependent: :destroy
+  has_one_attached :image
   has_secure_password
   has_secure_token :user_token
 
@@ -15,5 +16,4 @@ class User < ApplicationRecord
         .order("shops.created_at desc")
         .limit(number)
   end
-
 end
