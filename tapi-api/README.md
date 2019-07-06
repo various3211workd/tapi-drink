@@ -64,12 +64,14 @@ POST localhost:3000/api/user/new
 |Body       |name  |String  |UserName  |
 |Body       |email  |String  |EmailAdress  |
 |Body       |password  |String  |password  |
+|Body       |password_confirmation  |String  |password confirmation  |
+|Body       |image  |image  |user profile image  |
 #### Responce
 <details><summary>Example</summary><div>
 Please use the curl command to check the operation
 
 ```
-$ curl -H 'API_KEY:{API_KEY}' -X POST http://localhost:3000/api/user/new -d 'user[email]={user_email}&user[name]={user_name}&user[password]={user_password}'
+$ curl -H 'API_KEY:{API_KEY}' -X POST http://localhost:30000/api/user/new -d 'user[email]={user_email}&user[name]={user_name}&user[password]={user_password}&user[password_confirmation]={user_password_confirmation}'
 ```
 
 Please replace the {user_email} and {user_name} and {user_password} part with a concrete value  
@@ -83,15 +85,15 @@ ex)
 〇Success pattern
 
 ```
-$ curl -X POST http://localhost:3000/api/user/new -d 'user[email]=test@example.com&user[name]=user&user[password]=password'
+$ curl -X POST http://localhost:30000/api/user/new -d 'user[email]=test@example.com&user[name]=user&user[password]=password'
 ```
 
 ✖Failure pattern
 
 ```
-$ curl -X POST http://localhost:3000/api/user/new -d 'user[name]=&user[password]=password'
+$ curl -X POST http://localhost:30000/api/user/new -d 'user[name]=&user[password]=password'
                     or
-$ curl -X POST http://localhost:3000/api/user/new -d ''
+$ curl -X POST http://localhost:30000/api/user/new -d ''
 ```
 
 Successful message
@@ -130,7 +132,7 @@ POST localhost:3000/api/auth/login
 Please use the curl command to check the operation
 
 ```
-$ curl -H 'API_KEY:{API_KEY}' -X POST http://localhost:3000/api/auth/login -d 'login[email]={login_email}&login[password]={login_password}'
+$ curl -H 'API_KEY:{API_KEY}' -X POST http://localhost:30000/api/auth/login -d 'login[email]={login_email}&login[password]={login_password}'
 ```
 
 Please replace the {login_email} and {login_password} part with a concrete value  
@@ -141,7 +143,7 @@ ex)
 ```
 
 ```
-$ curl -X POST http://localhost:3000/api/auth/login -d 'login[email]=test@example.com&login[password]=password'
+$ curl -X POST http://localhost:30000/api/auth/login -d 'login[email]=test@example.com&login[password]=password'
 ```
 
 Validation error is returned if you do not enter both email and password
@@ -162,7 +164,9 @@ Successful login message
 {
   "message":"succesful login",
   "user_token":{random_string},
-  "user_id":{user_id}
+  "user_name": {user_name} ,
+  "user_id":{user_id},
+  "user_image_url":{user_image_url}
 }
 ```
 
@@ -193,7 +197,7 @@ DELETE localhost:3000/api/user/delete
 Please use the curl command to check the operation
 
 ```
-$ curl -H 'API_KEY:{API_KEY}' -H 'USER_TOKEN:{USER_TOKEN}' -X DELETE http://localhost:3000/api/user/delete
+$ curl -H 'API_KEY:{API_KEY}' -H 'USER_TOKEN:{USER_TOKEN}' -X DELETE http://localhost:30000/api/user/delete
 ```
 
 Successful delete message
@@ -219,7 +223,7 @@ Failure delete message
 ShopCreate API  returns a success_message when create is successful and an error message when failure
 #### EndPoint
 ```
-POST localhost:3000/api/shops/create
+POST localhost:30000/api/shops/create
 ```
 #### Params
 |Specified  |Param  |Type  |Description  |
@@ -237,7 +241,7 @@ POST localhost:3000/api/shops/create
 Please use the curl command to check the operation
 
 ```
-$ curl -H 'API_KEY:{API_KEY}' -H 'USER_TOKEN:{USER_TOKEN}' -X POST http://localhost:3000/api/shops/create -d 'shop[name]={shop_name}&shop[address]={shop_addres}&shop[details]={shop_details}&shop[user_id]={user_id}'
+$ curl -H 'API_KEY:{API_KEY}' -H 'USER_TOKEN:{USER_TOKEN}' -X POST http://localhost:30000/api/shops/create -d 'shop[name]={shop_name}&shop[address]={shop_addres}&shop[details]={shop_details}&shop[user_id]={user_id}'
 ```
 
 Successful  message
@@ -276,7 +280,7 @@ GET localhost:3000/api/shops/show
 Please use the curl command to check the operation
 
 ```
-$ curl -H 'API_KEY:{API_KEY}' -X GET http://localhost:3000/api/shops/show -d "number=10"
+$ curl -H 'API_KEY:{API_KEY}' -X GET http://localhost:30000/api/shops/show -d "number=10"
 ```
 
 return  shop_list_datas
