@@ -64,14 +64,13 @@ POST localhost:3000/api/user/new
 |Body       |name  |String  |UserName  |
 |Body       |email  |String  |EmailAdress  |
 |Body       |password  |String  |password  |
-|Body       |password_confirmation  |String  |password confirmation  |
 |Body       |image  |image  |user profile image  |
 #### Responce
 <details><summary>Example</summary><div>
 Please use the curl command to check the operation
 
 ```
-$ curl -H 'API_KEY:{API_KEY}' -X POST http://localhost:30000/api/user/new -d 'user[email]={user_email}&user[name]={user_name}&user[password]={user_password}&user[password_confirmation]={user_password_confirmation}'
+$ curl -H 'API_KEY:{API_KEY}' -X POST http://localhost:30000/api/user/new -d 'user[email]={user_email}&user[name]={user_name}&user[password]={user_password}'
 ```
 
 Please replace the {user_email} and {user_name} and {user_password} part with a concrete value  
