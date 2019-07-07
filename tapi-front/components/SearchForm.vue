@@ -1,16 +1,13 @@
 <template>
-<div>
-</div>
-<!--
-  <el-form :inline="true" :model="searchForm" ref="searchForm" :rules="rules" @submit.native.prevent>
-    <el-form-item prop="keyword">
-      <el-input placeholder="search by keyword" prefix-icon="el-icon-search" v-model="searchForm.keyword"  @keyup.enter.native="search('searchForm')" />
-    </el-form-item>
-    <el-form-item>
-      <el-button @click="search('searchForm')">search</el-button>
-    </el-form-item>
-  </el-form>
--->
+  <v-text-field
+    v-model="searchForm.keyword" 
+    :append-icon-cb="() => { search('searchForm') }"
+    flat 
+    solo-inverted
+    append-icon="search"
+    label="検索" 
+    hide-details
+  ></v-text-field>
 </template>
 
 <script lang="babel">
@@ -19,26 +16,13 @@ export default {
     return {
       searchForm: {
         keyword: ''
-      },
-      // バリデーションルール
-      rules: {
-        keyword: [
-          // 未入力はエラー
-          { required: true, message: 'Please input the keyword', trigger: 'blur' },
-          // 空白のみの入力はエラー
-          { whitespace: true, message: 'Please input the keyword', trigger: 'blur' }
-        ]
       }
     }
   },
   methods: {
+    // バリデーションチェックのために残しておく
     search (form) {
-      this.$refs[form].validate((valid) => {
-        if (!valid) {
-          return false
-        }
-        this.sendRequest()
-      })
+      this.sendRequest()
     },
     sendRequest () {
       this.$store.dispatch('getItems', {

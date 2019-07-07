@@ -8,20 +8,18 @@
           <router-link to="/" style="color: white; text-decoration: none;">Tapi-Drink</router-link>
         </v-toolbar-title>
         <v-spacer></v-spacer>
-        <v-text-field flat solo-inverted hide-details label="検索" prepend-inner-icon="search" class="hidden-sm-and-down"></v-text-field>
+        <SearchForm />
         <div v-if="true">
-        
-        <!-- user action alert -->
-        <v-btn icon>
-          <v-icon color="brown darken-1">notifications</v-icon>
-        </v-btn>
+          <!-- user action alert -->
+          <v-btn icon>
+            <v-icon color="brown darken-1">notifications</v-icon>
+          </v-btn>
         </div>
         <div v-else>
-        <v-btn icon>
-          <v-icon color="teal accent-2">notifications_active</v-icon>
-        </v-btn>
+          <v-btn icon>
+            <v-icon color="teal accent-2">notifications_active</v-icon>
+          </v-btn>
         </div>
-      
       </v-toolbar>
       
       <!-- drawer -->
@@ -131,6 +129,7 @@
 
 <script>
 import MyFooter from '~/components/Footer';
+import SearchForm from '~/components/SearchForm';
 import CreateUser from '~/pages/create_user';
 import LoginUser from '~/pages/login_user';
 import DeleteUser from '~/pages/delete_user';
@@ -139,6 +138,7 @@ import AddShop from '~/pages/add_shop';
 export default {
   components: {
     MyFooter,
+    SearchForm,
     CreateUser,
     LoginUser,
     DeleteUser,
