@@ -19,7 +19,6 @@
                     <h2>{{item.name}}</h2>
                     <p>{{item.address}}</p>
                     <span>{{item.details}}</span><br><br>
-                    <span>投稿者{{item.user_name}}</span>
                   </v-card-text>
 
                   <v-card-actions>
