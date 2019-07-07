@@ -9,7 +9,7 @@
       <v-card>
         <v-carousel height="40vh">
           <v-carousel-item
-            v-for="(item,index) in items"
+            v-for="(item, index) in items"
             :key="index"
             :src="item.src"
             reverse-transition="fade"
@@ -53,12 +53,15 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import {mapState} from 'vuex'
 
 export default {
   data () {
     return {
-      scrollY: 0
+      scrollY: 0,
+      items: [
+        { src: '/img/noimage.png' }
+      ]
     }
   },
   mounted () {
@@ -66,11 +69,9 @@ export default {
   },
   computed: mapState(['lists', 'isLoading']),
   methods: {
-    // 現在の上部からのスクロール量取得
     handleScroll: function () {
       this.scrollY = window.scrollY
     },
-    // トップへスクロール
     scrollTop: function () {
       document.body.scrollTop = 0
       document.documentElement.scrollTop = 0
