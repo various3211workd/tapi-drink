@@ -19,12 +19,12 @@ export default {
     )
     .catch(error => {
       console.error(error);
-      commit("hideLoading");
+      this.$store.commit("hideLoading");
       location.replace('/error');
     });
-    // 'lists' にレスポンスを設定
-    commit("setItems", response.data.shop_list_data);
-    // 'isLoading' を 'false' に設定
-    commit("hideLoading");
+    console.log(response.data);
+    commit('setItems', response.data);
+    commit('hideLoading');
+    console.log($store.state.lists);
   }
 };

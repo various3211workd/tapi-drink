@@ -4,8 +4,8 @@ module Api
 
     def show
       number_of_shops = set_value_in_number_of_shops(params[:number].to_i)
-      shop_list = User.fetch_shop_list(number_of_shops)
-      render json:{ shop_list_data: shop_list }
+      shop_list = Shop.fetch_shop_list(number_of_shops)
+      render json: shop_list
     end
 
     def create
@@ -18,7 +18,7 @@ module Api
     private
 
     def shop_params
-      params.require(:shop).permit(:name, :address, :details, :user_id, images: [] )
+      params.require(:shop).permit(:name, :address, :details, :user_id, :user_name, images: [] )
     end
 
     def set_value_in_number_of_shops(number)

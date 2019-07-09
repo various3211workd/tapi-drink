@@ -1,7 +1,7 @@
 <template>
   <v-text-field
     v-model="searchForm.keyword" 
-    :append-icon-cb="() => { search('searchForm') }"
+    :append-icon-cb="() => { /*search('searchForm')*/ }"
     flat 
     solo-inverted
     append-icon="search"
