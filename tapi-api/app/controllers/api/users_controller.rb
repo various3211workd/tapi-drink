@@ -17,12 +17,8 @@ module Api
       end
       user = User.find_by(email: input_user_login_data[:email])
       if user && user.authenticate(input_user_login_data[:password])
-        render json:{ 
-                      message: "succesful login",
-                      user_token: user.user_token ,
-                      user_name: user.name ,
-                      user_id: user.id
-                    } and return
+        return_user_data = fetch_user_data_to_json(user)
+        render json: return_user_data and return
       else
         render json:{ 
                       message: "failed login",
@@ -50,12 +46,28 @@ module Api
 
     private
     def user_params
-      params.fetch(:user, {}).permit(:email, :name, :password, :password_confirmation)
+      params.fetch(:user, {}).permit(:email, :name, :password, :password_confirmation, :image)
     end
 
     def login_params
       params.fetch(:user, {}).permit(:email, :password)
     end
 
+    def fetch_user_data_to_json(user)
+
+      unless user.image.attached?
+        user_image_url = "/img/noimage.png"
+      end
+
+      user_data = { 
+        message: "succesful login",
+        user_token: user.user_token ,
+        user_name: user.name ,
+        user_id: user.id ,
+        user_image_url: user_image_url
+      }
+
+      user_data
+    end
   end
 end

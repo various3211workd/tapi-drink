@@ -17,13 +17,33 @@
                     </v-carousel-item>
                   </v-carousel>
                   <v-card-text>
-                    <p>{{item.name}}</p>
+                    <h2>{{item.name}}</h2>
                     <p>{{item.address}}</p>
-                    <span>{{item.details}}</span><br>
-                    <span>投稿者{{item.user_name}}</span>
+                    <span>{{item.details}}</span><br><br>
                   </v-card-text>
+
                   <v-card-actions>
-                    <v-btn flat color="orange">いいね</v-btn>
+                    <v-list-tile class="grow">
+                      
+                      <!-- user icon -->
+                      <v-list-tile-avatar color="grey darken-3">
+                        <v-img
+                          class="elevation-6"
+                          src=""
+                        ></v-img>
+                      </v-list-tile-avatar>         
+                      <v-list-tile-content>
+                        <v-list-tile-title>{{ item.user_name }}</v-list-tile-title>
+                      </v-list-tile-content>
+                      
+                      <!-- favorite button -->
+                      <v-layout align-center justify-end>
+                        <v-btn icon disabled>
+                          <v-icon class="mr-1">favorite</v-icon>
+                          <span class="subheading mr-2"><!-- {{  }} --></span>
+                        </v-btn>
+                      </v-layout>
+                    </v-list-tile>
                   </v-card-actions>
                 </v-card>
                 <br>
