@@ -8,12 +8,13 @@
                 <v-card>
                   <v-carousel height="40vh">
                     <v-carousel-item
-                      v-for="(item,index) in items"
+                      v-for="(item, index) in item.images_url"
                       :key="index"
-                      :src="item.src"
+                      :src="item"
                       reverse-transition="fade"
                       transition="fade"
-                    ></v-carousel-item>
+                    >
+                    </v-carousel-item>
                   </v-carousel>
                   <v-card-text>
                     <h2>{{item.name}}</h2>
@@ -66,10 +67,7 @@ export default {
   data() {
     return{
       default_data: 10,
-      shop_list: [],
-      items: [
-        { src: '/img/noimage.png' }
-      ]
+      shop_list: null
     }
   },
   mounted (){
@@ -82,7 +80,9 @@ export default {
         }
       }
     )
-    .then(res => (this.shop_list = res.data.shop_list_data))
+    .then(res => {
+      this.shop_list = res.data
+    })
     .catch(err => console.log(err));
   }
 }

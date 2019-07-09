@@ -233,7 +233,8 @@ POST localhost:30000/api/shops/create
 |Body       |address  |String  |Shop Address  |
 |Body       |details  |text  |Shop Details  |
 |Body       |user_id  |integer  |ID of created user  |
-|Body       |images[]  |image  |Shop images  |
+|Body       |user_name  |string  |user name  |
+|Body       |images  |image  |Shop images  |
 
 #### Responce
 <details><summary>Example</summary><div>
