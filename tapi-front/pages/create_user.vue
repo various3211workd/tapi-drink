@@ -30,7 +30,17 @@
                   </v-toolbar>
                   <v-card-text>
                     <v-form>
-
+                      <v-flex xs12 class="text-xs-center text-sm-center text-md-center text-lg-center">
+                        <v-img :src="this.image_url" :aspect-ratio="16/9" v-if="this.image_url" ></v-img>
+                        <v-text-field prepend-icon="insert_photo" v-model="image_name" label="画像を選択" @click="pickFile"></v-text-field>
+                        <input 
+                          type="file"
+                          style="display: none;"
+                          ref="image"
+                          accept="image/*"
+                          v-on:change="ImageUpload()"
+                        />
+                      </v-flex>
                       <v-text-field prepend-icon="person" v-model="user_name" label="ユーザ名" type="text"></v-text-field>
                       <v-text-field prepend-icon="mail" v-model="user_email" label="メールアドレス" type="address"></v-text-field>
                       <v-text-field prepend-icon="lock" v-model="user_pass" label="パスワード" type="password"></v-text-field>
@@ -66,31 +76,41 @@ export default {
       user_email: '',
       user_pass: '',
       user_repass: '',
-      user_image: null
+      user_image: null,
+      image_name: null,
+      image_url:  null
     };
   },
   methods: {
+    pickFile(){
+      this.$refs.image.click()
+    },
     ImageUpload(){
-      this.user_image = this.$refs.file.files[0];
-      console.log(this.user_image);
+      this.user_image = this.$refs.image.files[0];
+      this.image_name = this.user_image.name
+
+      const filereader = new FileReader()
+      filereader.addEventListener("load", () => {
+        this.image_url = filereader.result;
+      }, false);
+      if (this.user_image) {
+        filereader.readAsDataURL(this.user_image);
+      }
     },
     async userCreate() {
       const user_data = new FormData();
-      user_data.append('email', this.user_email);
-      user_data.append('name', this.user_name);
-      user_data.append('password', this.user_pass);
-      user_data.append('password_confirmation', this.user_repass);
+      user_data.append('user[email]', this.user_email);
+      user_data.append('user[name]', this.user_name);
+      user_data.append('user[password]', this.user_pass);
+      user_data.append('user[password_confirmation]', this.user_repass);
       if( this.user_image != null ){
-        user_data.append('image', this.user_image);
+        user_data.append('user[image]', this.user_image);
       }
-      console.log(user_data);
       await axios.post(
         USER_CREATE_URL,
         user_data,
         {
           headers: { 
-            //'Content-Type': 'application/json',
-            //'Content-Type': 'multipart/form-data',
             'API_KEY': TAPI_API_KEY
           }
         })
