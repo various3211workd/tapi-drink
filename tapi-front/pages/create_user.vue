@@ -30,6 +30,13 @@
                   </v-toolbar>
                   <v-card-text>
                     <v-form>
+                      <v-text-field prepend-icon="attach_file" v-model="user_image" label="プロフィール画像"></v-text-field>
+                      <label class="input-item__label" style="padding: 0 1rem; border: solid 1px #888;">
+                      <input 
+                            type="file"
+                            style="display: none"
+                      >
+                      </label>
                       <v-text-field prepend-icon="person" v-model="user_name" label="ユーザ名" type="text"></v-text-field>
                       <v-text-field prepend-icon="mail" v-model="user_email" label="メールアドレス" type="address"></v-text-field>
                       <v-text-field prepend-icon="lock" v-model="user_pass" label="パスワード" type="password"></v-text-field>
