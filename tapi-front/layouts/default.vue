@@ -33,7 +33,7 @@
                 <setLoginData/>
                 <v-list-tile avatar>
                   <v-list-tile-avatar>
-                    <v-icon medium>account_circle</v-icon>
+                    <v-img :src=$store.state.user_image_url></v-img>
                   </v-list-tile-avatar>
                   <v-list-tile-content>
                     <v-list-tile-title class="title">
