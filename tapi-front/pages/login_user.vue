@@ -52,8 +52,6 @@ const LOGIN_URL = process.env.API_URL + 'api/auth/login';
 const TAPI_API_KEY = process.env.TAPI_API_KEY;
 
 export default {
-  components: {
-  },
   data() {
     return {
       response: '',
