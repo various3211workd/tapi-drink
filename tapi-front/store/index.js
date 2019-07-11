@@ -68,12 +68,12 @@ export const actions = {
 
     const FECTH_SHOP_LIST_URL = process.env.API_URL + 'api/shops/show';
     const TAPI_API_KEY = process.env.TAPI_API_KEY;
-    const DEFAULT_ITEM_DATA = 10;
+    const SEARCH_WORDS = payload.keyword;
       
     commit("showLoading");
     
     await axios.get(
-      FECTH_SHOP_LIST_URL + '?number=' + DEFAULT_ITEM_DATA + '&word=' + payload.keyword,
+      FECTH_SHOP_LIST_URL + '?search_words=' + SEARCH_WORDS,
       {
         headers: { 
           'Content-Type': 'application/json',

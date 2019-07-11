@@ -30,7 +30,7 @@ export default {
   computed: mapState(['isLoading']),
   fetch ({ store }) {
     store.dispatch('getItems', {
-      keyword: 'nuxt.js'
+      keyword: ''
     })
   }
 }
