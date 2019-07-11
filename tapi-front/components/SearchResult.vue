@@ -33,6 +33,7 @@
                 src=""
               ></v-img>
             </v-list-tile-avatar>         
+
             <v-list-tile-content>
               <v-list-tile-title>{{ item.user_name }}</v-list-tile-title>
             </v-list-tile-content>
@@ -44,11 +45,20 @@
                 <span class="subheading mr-2"><!-- {{  }} --></span>
               </v-btn>
             </v-layout>
+
           </v-list-tile>
         </v-card-actions>
       </v-card>
       <br>
     </div>
+
+    <!-- page up button -->
+    <div v-if="250 < scrollY" class="page-component-up">
+      <v-btn fab dark color="orange darken-1" v-on:click="scrollTop">
+        <v-icon>arrow_upward</v-icon>
+      </v-btn>
+    </div>
+
   </div>
 </template>
 
@@ -76,3 +86,12 @@ export default {
   }
 }
 </script>
+
+<style>
+.page-component-up {
+  position: fixed;
+  right: 80px;
+  bottom: 80px;
+  cursor: pointer;
+}
+</style>
