@@ -49,6 +49,31 @@
 
 <script>
 export default {
-  //
+  methods: {
+    async changeUserConfig() {
+      await axios.post(
+        USER_CREATE_URL,
+        {
+          'user': {
+            'email': this.user_email,
+            'name': this.user_name,
+            'password': this.user_pass,
+            'password_confirmation': this.user_repass
+          },
+        },
+        {
+          headers: { 
+            'Content-Type': 'application/json',
+            'API_KEY': TAPI_API_KEY
+          }
+        })
+        .then(res => {
+          this.response = res.data;
+        })
+        .catch(err => console.log(err));
+    }
+  },
+  mounted() {
+  }
 }
 </script>
