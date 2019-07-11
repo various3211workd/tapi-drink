@@ -31,7 +31,7 @@
                 <setLoginData/>
                 <v-list-tile avatar>
                   <v-list-tile-avatar>
-                    <v-icon medium>account_circle</v-icon>
+                    <v-img :src=$store.state.user_image_url></v-img>
                   </v-list-tile-avatar>
                   <v-list-tile-content>
                     <v-list-tile-title class="title">
@@ -112,10 +112,10 @@
         <v-container fluid fill-height>
           <v-layout justify-center align-center>
             <v-flex text-xs-center>
-            <div>
-              <nuxt/>
-            </div>
-          </v-flex>
+              <div>
+                <nuxt/>
+              </div>
+            </v-flex>
           </v-layout>
         </v-container>
       </v-content>

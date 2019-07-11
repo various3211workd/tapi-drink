@@ -37,7 +37,6 @@ module Api
     def delete_user
       user_token = request.headers[:HTTP_USER_TOKEN]
       user = User.find_by(user_token: user_token)
-      p user_token
       user.destroy!
       render json:{ message: "complete" }
     rescue => e
@@ -55,7 +54,9 @@ module Api
 
     def fetch_user_data_to_json(user)
 
-      unless user.image.attached?
+      if user.image.attached?
+        user_image_url = url_for(user.image)
+      else
         user_image_url = "/img/noimage.png"
       end
 

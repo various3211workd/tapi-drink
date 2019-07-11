@@ -31,7 +31,7 @@
             <v-list-tile-avatar color="grey darken-3">
               <v-img
                 class="elevation-6"
-                src=""
+                :src=item.user_image
               ></v-img>
             </v-list-tile-avatar>         
             <v-list-tile-content>

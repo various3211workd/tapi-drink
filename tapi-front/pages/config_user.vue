@@ -4,7 +4,7 @@
       <v-flex xs12 md4>
         <material-card class="v-card-profile">
           <v-avatar slot="offset" class="mx-auto d-block" size="130">
-            <img src="">
+            <v-img :src=$store.state.user_image_url></v-img>
           </v-avatar>
           <v-card-text class="text-xs-center">
             <h6 class="category text-gray font-weight-thin mb-3"><!--{{  }}--></h6>

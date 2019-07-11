@@ -23,9 +23,10 @@ import axios from 'axios'
 
 export const state = () => ({
   // user relation
-  user: null,         // user name
-  user_token: null,   // user token
-  status: false,      // user status flag
+  user: null,           // user name
+  user_token: null,     // user token
+  user_image_url: null, // user image
+  status: false,        // user status flag
 
   // search form relation
   lists: [],          // response API data
@@ -37,6 +38,7 @@ export const mutations = {
     state.user = payload.user_name;
     state.user_token = payload.user_token;
     state.user_id = payload.user_id;
+    state.user_image_url = payload.user_image_url;
     state.status = true;
   },
   logout(state) {
