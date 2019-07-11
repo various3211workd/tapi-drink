@@ -5,7 +5,10 @@
       <v-container fluid fill-height>
         <v-layout justify-center>
           <v-flex xs12 sm6 md6 >
-            <div v-loading.fullscreen.lock="isLoading">
+            <div v-if="isLoading">
+              <v-progress-circular indeterminate color="purple"></v-progress-circular>
+            </div>
+            <div v-else>
               <search-result />
             </div>
           </v-flex>

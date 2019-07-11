@@ -1,16 +1,7 @@
 <template>
-  <v-text-field
-    v-model="searchForm.keyword" 
-    flat 
-    solo-inverted
-    append-icon="search"
-    label="検索" 
-    hide-details
-  >
   <!--
   <v-text-field
     v-model="searchForm.keyword" 
-    :append-icon-cb="() => { /*search('searchForm')*/ }"
     flat 
     solo-inverted
     append-icon="search"
@@ -18,6 +9,16 @@
     hide-details
   >
   -->
+  <v-text-field
+    v-on:keyup.enter="search('searchForm')" 
+    v-model="searchForm.keyword" 
+    :append-icon-cb="() => { search('searchForm') }"
+    flat 
+    solo-inverted
+    append-icon="search"
+    label="検索" 
+    hide-details
+  >
   </v-text-field>
 </template>
 
@@ -37,7 +38,7 @@ export default {
     },
     sendRequest () {
       this.$store.dispatch('getItems', {
-        keyword: this.searchForm.keyword
+        keyword: this.searchForm.keyword,
       })
     }
   }
