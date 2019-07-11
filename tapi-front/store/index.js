@@ -73,7 +73,7 @@ export const actions = {
     commit("showLoading");
     
     await axios.get(
-      FECTH_SHOP_LIST_URL + '?number=' + DEFAULT_ITEM_DATA + '&search_words=' + SEARCH_WORDS,
+      FECTH_SHOP_LIST_URL + '?search_words=' + SEARCH_WORDS,
       {
         headers: { 
           'Content-Type': 'application/json',
