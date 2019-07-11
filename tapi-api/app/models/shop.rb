@@ -2,8 +2,16 @@ class Shop < ApplicationRecord
   belongs_to :user
   has_many_attached :images
 
-  def self.fetch_shop_list(number)
-    shop_list = Shop.order('created_at desc').limit(number)
+  def self.fetch_shop_list(search_words)
+    if search_words.blank?
+      #fetch 10 latest record
+      shop_list = Shop.order('created_at desc').limit(10)
+    else
+      #fetch shop list
+      shop_list = shops_search_with(search_words)
+      p shop_list
+    end
+
     shop_list_json = []
 
     shop_list.each do |item|
@@ -31,4 +39,14 @@ class Shop < ApplicationRecord
     images_url_list
   end
 
+  def self.shops_search_with(search_words)
+    shop_list = []
+    search_words.each do |search_word|
+      shop_list += Shop.where('name LIKE(?) or address LIKE(?) or details LIKE(?)',
+      "%#{search_word}%","%#{search_word}%","%#{search_word}%")
+    end
+    shop_list.uniq!
+
+    shop_list
+  end
 end

@@ -3,8 +3,8 @@ module Api
     skip_before_action :user_authenticate , only: [:show]
 
     def show
-      number_of_shops = set_value_in_number_of_shops(params[:number].to_i)
-      shop_list = Shop.fetch_shop_list(number_of_shops)
+      search_words_list = shape_request_parameter(params[:search_words])
+      shop_list = Shop.fetch_shop_list(search_words_list)
       render json: shop_list
     end
 
@@ -21,15 +21,12 @@ module Api
       params.require(:shop).permit(:name, :address, :details, :user_id, :user_name, images: [] )
     end
 
-    def set_value_in_number_of_shops(number)
-      if number < 0 || number > 50
-        50
-      elsif number.blank?
-        10
-      else
-        number
+    def shape_request_parameter(search_words_list)
+      unless search_words_list.present?
+        return nil
       end
+      p search_words_list
+      search_words_list.split(/[[:blank:]]+/)
     end
-
   end
 end
