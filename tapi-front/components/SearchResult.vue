@@ -5,6 +5,7 @@
   </div>
   <!-- else -->
   <div v-else>
+    {{ lists }}
     <div v-for="(item, index) in lists" :key="index">
       <v-card>
         <v-carousel height="40vh">

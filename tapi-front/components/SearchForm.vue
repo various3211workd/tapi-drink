@@ -1,13 +1,24 @@
 <template>
   <v-text-field
     v-model="searchForm.keyword" 
+    flat 
+    solo-inverted
+    append-icon="search"
+    label="検索" 
+    hide-details
+  >
+  <!--
+  <v-text-field
+    v-model="searchForm.keyword" 
     :append-icon-cb="() => { /*search('searchForm')*/ }"
     flat 
     solo-inverted
     append-icon="search"
     label="検索" 
     hide-details
-  ></v-text-field>
+  >
+  -->
+  </v-text-field>
 </template>
 
 <script lang="babel">
