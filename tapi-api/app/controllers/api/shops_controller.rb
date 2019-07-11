@@ -25,7 +25,6 @@ module Api
       unless search_words_list.present?
         return nil
       end
-      p search_words_list
       search_words_list.split(/[[:blank:]]+/)
     end
   end
