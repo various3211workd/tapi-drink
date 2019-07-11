@@ -42,8 +42,11 @@ class Shop < ApplicationRecord
   def self.shops_search_with(search_words)
     shop_list = []
     search_words.each do |search_word|
-      shop_list += Shop.where('name LIKE(?) or address LIKE(?) or details LIKE(?)',
-      "%#{search_word}%","%#{search_word}%","%#{search_word}%")
+      shop_list += Shop.where(
+        'name LIKE(?) or address LIKE(?) or details LIKE(?)',
+        "%#{search_word}%",
+        "%#{search_word}%",
+        "%#{search_word}%")
     end
     shop_list.uniq!
 
