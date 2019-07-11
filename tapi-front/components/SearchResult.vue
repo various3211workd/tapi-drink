@@ -5,7 +5,6 @@
   </div>
   <!-- else -->
   <div v-else>
-    {{ lists }}
     <div v-for="(item, index) in lists" :key="index">
       <v-card>
         <v-carousel height="40vh">
@@ -30,8 +29,8 @@
             <!-- user icon -->
             <v-list-tile-avatar color="grey darken-3">
               <v-img
-                class="elevation-6"
-                :src=item.user_image
+                class="elevation-6" 
+                src=""
               ></v-img>
             </v-list-tile-avatar>         
             <v-list-tile-content>

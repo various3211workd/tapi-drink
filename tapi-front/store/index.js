@@ -72,7 +72,6 @@ export const actions = {
       
     commit("showLoading");
     
-    //const response = 
     await axios.get(
       FECTH_SHOP_LIST_URL + '?number=' + DEFAULT_ITEM_DATA,
       {
@@ -84,7 +83,6 @@ export const actions = {
       }
     )
     .then(res => {
-      console.log(res.data);
       commit('setItems', res.data);
       commit('hideLoading');
     })

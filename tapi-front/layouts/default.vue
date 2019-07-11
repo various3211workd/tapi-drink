@@ -28,7 +28,6 @@
           <v-list>
             <v-list-tile>
               <div v-if="$store.getters.isSignedIn">
-                <setLoginData/>
                 <v-list-tile avatar>
                   <v-list-tile-avatar>
                     <v-img :src=$store.state.user_image_url></v-img>
