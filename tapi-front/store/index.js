@@ -66,9 +66,8 @@ export const actions = {
       commit('hideLoading');
     })
     .catch(error => {
-      console.error(error);
       commit("hideLoading");
-      location.replace('/error');
+      this.$router.push('/error');
     });
   }
 }
