@@ -28,7 +28,7 @@
                   <v-card-text>
                     <v-form>
                       <v-flex xs12 class="text-xs-center text-sm-center text-md-center text-lg-center">
-                        <v-text-field prepend-icon="insert_photo"  label="画像を選択" @click="pickFile"></v-text-field>
+                        <v-text-field prepend-icon="insert_photo" v-model="image_names" label="画像を選択" @click="pickFile" readonly></v-text-field>
                         <input 
                           type="file"
                           style="display: none;"
@@ -40,7 +40,6 @@
                       </v-flex>
                       <v-text-field prepend-icon="person" v-model="shop_name" label="お店の名前" type="text"></v-text-field>
                       <v-text-field prepend-icon="home" v-model="shop_address" label="住所" type="text"></v-text-field>
-                      <v-img prepend-icon="photo" v-model="shop_image" label="画像" type="password"></v-img>                    
                       <v-textarea prepend-icon="receipt" v-model="shop_details" label="詳細" type="textfield"></v-textarea>
                     </v-form>
                   </v-card-text>
@@ -80,7 +79,11 @@ export default {
     },
     ImagesUpload(){
       this.shop_images = this.$refs.images.files;
-      /*
+      for(let i=0; i < this.shop_images.length; i++){
+        this.image_names += this.shop_images[i].name + ' ';
+      }
+      console.log(this.image_names);
+/*
       this.image_name = this.user_image.name
 
       const filereader = new FileReader()
@@ -93,20 +96,20 @@ export default {
       */
     },
     async shopAdd() {
+      const shop_data = new FormData();
+      shop_data.append('shop[name]', this.shop_name);
+      shop_data.append('shop[address]', this.shop_address);
+      shop_data.append('shop[details]', this.user_pass);
+      shop_data.append('shop[user_id]', this.$store.state.user_id);
+      if( this.shop_images != null ){
+        shop_data.append('shop[images]', this.shop_images);
+      }
+
       await axios.post(
         SHOP_ADD_URL,
-        {
-          'shop': {
-            'name': this.shop_name,
-            'address': this.shop_address,
-            'details': this.shop_details,
-            'user_id': this.$store.state.user_id,
-            'images': this.shop_images,
-          },
-        },
+        shop_data,
         {
           headers: { 
-            'Content-Type': 'application/json',
             'API_KEY': TAPI_API_KEY,
             'USER_TOKEN': this.$store.state.user_token,
           }
