@@ -27,11 +27,11 @@ export default {
   components: {
     SearchResult
   },
-  computed: mapState(['isLoading']),
-  fetch ({ store }) {
-    store.dispatch('getItems', {
-      keyword: ''
+  mounted() {
+    this.$store.dispatch('getItems', {
+      keyword: '',
     })
-  }
+  },
+  computed: mapState(['isLoading']),
 }
 </script>

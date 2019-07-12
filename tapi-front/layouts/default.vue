@@ -5,7 +5,7 @@
       <v-toolbar color="orange darken-2" dark fixed app clipped-right>
         <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
         <v-toolbar-title>
-          <router-link to="/" style="color: white; text-decoration: none;">Tapi-Drink</router-link>
+          <router-link to="/" style="color: white; text-decoration: none;">シェアタピ</router-link>
         </v-toolbar-title>
         <v-spacer></v-spacer>
         <SearchForm />
