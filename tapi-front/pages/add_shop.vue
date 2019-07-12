@@ -27,6 +27,18 @@
                   </v-toolbar>
                   <v-card-text>
                     <v-form>
+                      <v-flex xs12 class="text-xs-center text-sm-center text-md-center text-lg-center">
+                        <v-img :src="this.image_url" :aspect-ratio="16/9" v-if="this.image_url" ></v-img>
+                        <v-text-field prepend-icon="insert_photo" v-model="image_name" label="画像を選択" @click="pickFile"></v-text-field>
+                        <input 
+                          type="file"
+                          style="display: none;"
+                          ref="images"
+                          accept="image/*"
+                          multiple
+                          v-on:change="ImagesUpload()"
+                        />
+                      </v-flex>
                       <v-text-field prepend-icon="person" v-model="shop_name" label="お店の名前" type="text"></v-text-field>
                       <v-text-field prepend-icon="home" v-model="shop_address" label="住所" type="text"></v-text-field>
                       <v-img prepend-icon="photo" v-model="shop_image" label="画像" type="password"></v-img>                    
@@ -59,10 +71,28 @@ export default {
       shop_name: '',
       shop_address: '',
       shop_details: '',
-      shop_image: [],
+      shop_images: [],
+      image_names: ''
     };
   },
   methods: {
+    pickFile(){
+      this.$refs.images.click()
+    },
+    ImageUpload(){
+      this.shop_images = this.$refs.images.files;
+      /*
+      this.image_name = this.user_image.name
+
+      const filereader = new FileReader()
+      filereader.addEventListener("load", () => {
+        this.image_url = filereader.result;
+      }, false);
+      if (this.user_image) {
+        filereader.readAsDataURL(this.user_image);
+      }
+      */
+    },
     async shopAdd() {
       await axios.post(
         SHOP_ADD_URL,
@@ -72,7 +102,7 @@ export default {
             'address': this.shop_address,
             'details': this.shop_details,
             'user_id': this.$store.state.user_id,
-            'images': this.shop_image,
+            'images': this.shop_images,
           },
         },
         {
