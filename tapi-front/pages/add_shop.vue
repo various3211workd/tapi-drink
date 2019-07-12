@@ -28,8 +28,7 @@
                   <v-card-text>
                     <v-form>
                       <v-flex xs12 class="text-xs-center text-sm-center text-md-center text-lg-center">
-                        <v-img :src="this.image_url" :aspect-ratio="16/9" v-if="this.image_url" ></v-img>
-                        <v-text-field prepend-icon="insert_photo" v-model="image_name" label="画像を選択" @click="pickFile"></v-text-field>
+                        <v-text-field prepend-icon="insert_photo"  label="画像を選択" @click="pickFile"></v-text-field>
                         <input 
                           type="file"
                           style="display: none;"
@@ -79,7 +78,7 @@ export default {
     pickFile(){
       this.$refs.images.click()
     },
-    ImageUpload(){
+    ImagesUpload(){
       this.shop_images = this.$refs.images.files;
       /*
       this.image_name = this.user_image.name
