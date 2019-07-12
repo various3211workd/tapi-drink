@@ -1,24 +1,3 @@
-/*
-import Vue from "vue";
-import Vuex from "vuex";
-import mutations from "./mutations";
-import actions from "./actions";
-import state from "./state";
-import getters from "./getters";
-
-Vue.use(Vuex);
-
-const store = () =>
-  new Vuex.Store({
-    state,
-    mutations,
-    actions,
-    getters
-  });
-
-export default store;
-*/
-
 import axios from 'axios'
 
 export const state = () => ({
@@ -88,7 +67,7 @@ export const actions = {
     })
     .catch(error => {
       console.error(error);
-      this.$store.commit("hideLoading");
+      commit("hideLoading");
       location.replace('/error');
     });
   }
