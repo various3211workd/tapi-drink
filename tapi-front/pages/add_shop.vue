@@ -70,7 +70,8 @@ export default {
       shop_address: '',
       shop_details: '',
       shop_images: [],
-      image_names: ''
+      image_names: '',
+      shop_data: new FormData()
     };
   },
   methods: {
@@ -78,11 +79,12 @@ export default {
       this.$refs.images.click()
     },
     ImagesUpload(){
-      this.shop_images = this.$refs.images.files;
-      for(let i=0; i < this.shop_images.length; i++){
-        this.image_names += this.shop_images[i].name + ' ';
+      let image_data = this.$refs.images.files;
+      for(let i=0; i < image_data.length; i++){
+        this.image_names += image_data[i].name + ' ';
+        //this.shop_images.push(image_data[i]);
+        this.shop_data.append('shop[images][]', image_data[i]);
       }
-      console.log(this.image_names);
 /*
       this.image_name = this.user_image.name
 
@@ -96,18 +98,14 @@ export default {
       */
     },
     async shopAdd() {
-      const shop_data = new FormData();
-      shop_data.append('shop[name]', this.shop_name);
-      shop_data.append('shop[address]', this.shop_address);
-      shop_data.append('shop[details]', this.user_pass);
-      shop_data.append('shop[user_id]', this.$store.state.user_id);
-      if( this.shop_images != null ){
-        shop_data.append('shop[images]', this.shop_images);
-      }
-
+      this.shop_data.append('shop[name]', this.shop_name);
+      this.shop_data.append('shop[address]', this.shop_address);
+      this.shop_data.append('shop[details]', this.shop_details);
+      this.shop_data.append('shop[user_id]', this.$store.state.user_id);
+      this.shop_data.append('shop[user_name]', this.$store.state.user);
       await axios.post(
         SHOP_ADD_URL,
-        shop_data,
+        this.shop_data,
         {
           headers: { 
             'API_KEY': TAPI_API_KEY,

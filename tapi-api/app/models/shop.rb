@@ -2,6 +2,10 @@ class Shop < ApplicationRecord
   belongs_to :user
   has_many_attached :images
 
+  validates :name, presence: true, length: { maximum: 100 }
+  validates :address, presence: true, length: { maximum: 255 }
+  validates :details, presence: true
+
   def self.fetch_shop_list(search_words)
     if search_words.blank?
       #fetch 10 latest record
