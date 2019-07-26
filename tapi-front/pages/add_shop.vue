@@ -27,9 +27,19 @@
                   </v-toolbar>
                   <v-card-text>
                     <v-form>
+                      <v-flex xs12 class="text-xs-center text-sm-center text-md-center text-lg-center">
+                        <v-text-field prepend-icon="insert_photo" v-model="image_names" label="画像を選択" @click="pickFile" readonly></v-text-field>
+                        <input 
+                          type="file"
+                          style="display: none;"
+                          ref="images"
+                          accept="image/*"
+                          multiple
+                          v-on:change="ImagesUpload()"
+                        />
+                      </v-flex>
                       <v-text-field prepend-icon="person" v-model="shop_name" label="お店の名前" type="text"></v-text-field>
                       <v-text-field prepend-icon="home" v-model="shop_address" label="住所" type="text"></v-text-field>
-                      <v-img prepend-icon="photo" v-model="shop_image" label="画像" type="password"></v-img>                    
                       <v-textarea prepend-icon="receipt" v-model="shop_details" label="詳細" type="textfield"></v-textarea>
                     </v-form>
                   </v-card-text>
@@ -59,25 +69,45 @@ export default {
       shop_name: '',
       shop_address: '',
       shop_details: '',
-      shop_image: [],
+      shop_images: [],
+      image_names: '',
+      shop_data: new FormData()
     };
   },
   methods: {
+    pickFile(){
+      this.$refs.images.click()
+    },
+    ImagesUpload(){
+      let image_data = this.$refs.images.files;
+      for(let i=0; i < image_data.length; i++){
+        this.image_names += image_data[i].name + ' ';
+        //this.shop_images.push(image_data[i]);
+        this.shop_data.append('shop[images][]', image_data[i]);
+      }
+/*
+      this.image_name = this.user_image.name
+
+      const filereader = new FileReader()
+      filereader.addEventListener("load", () => {
+        this.image_url = filereader.result;
+      }, false);
+      if (this.user_image) {
+        filereader.readAsDataURL(this.user_image);
+      }
+      */
+    },
     async shopAdd() {
+      this.shop_data.append('shop[name]', this.shop_name);
+      this.shop_data.append('shop[address]', this.shop_address);
+      this.shop_data.append('shop[details]', this.shop_details);
+      this.shop_data.append('shop[user_id]', this.$store.state.user_id);
+      this.shop_data.append('shop[user_name]', this.$store.state.user);
       await axios.post(
         SHOP_ADD_URL,
-        {
-          'shop': {
-            'name': this.shop_name,
-            'address': this.shop_address,
-            'details': this.shop_details,
-            'user_id': this.$store.state.user_id,
-            'images': this.shop_image,
-          },
-        },
+        this.shop_data,
         {
           headers: { 
-            'Content-Type': 'application/json',
             'API_KEY': TAPI_API_KEY,
             'USER_TOKEN': this.$store.state.user_token,
           }
